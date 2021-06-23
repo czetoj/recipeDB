@@ -81,6 +81,8 @@ A kiválasztott recept adatai egy új oldalon:
 - legyen ellenőrzés a felvitt adatok megkövetelt formátumára,
 - a módosított recept csak akkor kerüljön elmentésre ha a kötelező mezők megfelelően ki vannak töltve,
 - mentés után navigáljon vissza a rendszer az admin oldalra, ahol a módosított recept már a módosított adatokkal jelenjen meg.
+  
+___
 
 ## 3. Alapanyagok adatbázis
 
@@ -149,6 +151,8 @@ A kiválasztott alapanyag adatai egy új oldalon:
 - legyen ellenőrzés a felvitt adatok megkövetelt formátumára,
 - a módosított alapanyag csak akkor kerüljön elmentésre ha a kötelező mezők megfelelően ki vannak töltve,
 - mentés után navigáljon vissza a rendszer az admin oldalra, ahol a módosított alapanyag már a módosított adatokkal jelenjen meg.
+  
+___
 
 ## 4. Felhasználók adatbázis
 
@@ -205,7 +209,9 @@ A kiválasztott felhasználó adatai egy új oldalon:
 - a módosított felhasználó csak akkor kerüljön elmentésre ha a kötelező mezők megfelelően ki vannak töltve,
 - mentés után navigáljon vissza a rendszer az admin oldalra, ahol a módosított felhasználó már a módosított adatokkal jelenjen meg.
 
-## 4. Heti menü adatbázis
+___
+
+## 5. Heti menü adatbázis
 
 ### 1. felhasználói történet:
 
@@ -252,7 +258,9 @@ A kiválasztott menü adatai egy új oldalon:
 - a módosított menü csak akkor kerüljön elmentésre ha a kötelező mezők megfelelően ki vannak töltve,
 - mentés után navigáljon vissza a rendszer az admin oldalra, ahol a módosított menü már a módosított adatokkal jelenjen meg.
 
-## Üzenetek adatbázis
+___
+
+## 6. Üzenetek adatbázis
 
 ### 1. felhasználói történet:
 
