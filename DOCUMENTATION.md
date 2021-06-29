@@ -1,6 +1,6 @@
 ## **1. Az alkalmazás célja**
 
-Az alkalmazás célja, hogy a felhasználók valamint az admin által felvitt receptek adatait nyilvántartsa és kezelje.
+Az alkalmazás célja, hogy a felhasználók valamint az adminisztrátor által felvitt receptek adatait nyilvántartsa és kezelje.
 
 ## **2. Az alkalmazás telepítése**
 
