@@ -293,3 +293,9 @@ Az adott kategória kiválasztásával a megadott kulcsszónak megfelelően fris
 ### Elfogadási kritérium:
 
 A szám típusú adatok alapján növekvő/csökkenő, míg a szöveges adatok alapján ABC sorrendben lehessen rendezni az üzeneteket.
+
+## **Linkek:**  
+
+- [A dokumentáció itt érhető el.](https://github.com/czetoj/recipeDB/blob/main/DOCUMENTATION.md)
+
+- [A fejlesztői dokumentáció itt érhető el.](https://github.com/czetoj/recipeDB/blob/main/DEVELOPER_DOCUMENTATION.md)
