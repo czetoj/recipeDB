@@ -71,6 +71,7 @@ Az egyes recepthez tartozó adatok a következők:
 - calory (kalória érték)
 - description (az elkészítés lépései)
 - ingredients (hozzávalók)
+- ingredients_quantity (a hozzávalók mennyiségei)
 - img (kép URL)
 - story (kedvcsináló a recepthez)
 - portion (hány adagos a recept)
@@ -154,7 +155,6 @@ Az aloldal megjeleníti az összes alapanyag adatait lista formátumban.
 Ezek az adatok a következők:
 - id (azonosító)
 - name (név)
-- count (mennyiség)
 - unit (mennyiségi egység)
 - calory (kalória érték)
 
