@@ -1,0 +1,196 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card p-3">
+
+                <div class="card-header card-header-purplish">
+                    <h4 class="card-title">Recept módosítása</h4>
+                    <p class="card-category">Itt módosíthatod a recepted részleteit!</p>
+
+                </div>
+
+                <form [formGroup]="recipeForm" (ngSubmit)="onSubmit(recipe)">
+
+                    <div class="form-group">
+                        <label for="name">Recept neve:</label>
+                        <input type="text" class="form-control pl-3" id="name" name="name" formControlName="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kategória</label>
+                        <select name="category" (change)="changeCategory($event)" formControlName="category"
+                            class="custom-select mb-2">
+                            <option value="" disabled>Válassz kategóriát</option>
+                            <option ngValue="Desszert">Desszert</option>
+                            <option ngValue="Főzelék">Főzelék</option>
+                            <option ngValue="Halak">Halak</option>
+                            <option ngValue="Húsos fogás">Húsos fogás</option>
+                            <option ngValue="Leves">Leves</option>
+                            <option ngValue="Saláta">Saláta</option>
+                            <option ngValue="Tészta">Tészta</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="difficulty">Recept elkészítésének nehézsége:</label>
+                        <mat-radio-group name="difficulty" formControlName="difficulty">
+                            <mat-radio-button class="radio-right" value="könnyű">
+                                könnyű
+                            </mat-radio-button>
+                            <mat-radio-button class="radio-right" value="közepes">
+                                közepes</mat-radio-button>
+                            <mat-radio-button class="radio-right" value="nehéz">
+                                nehéz</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <mat-divider></mat-divider>
+
+                    <div class="form-group">
+                        <label id="example-radio-group-label">Mennyire pénztárcabarát a recept?</label>
+                        <mat-radio-group class="example-radio-group" name="price_friendly"
+                            formControlName="price_friendly">
+                            <mat-radio-button class="example-radio-button" value="olcsó">olcsó
+                            </mat-radio-button>
+                            <mat-radio-button class="example-radio-button" value="megfizethető">megfizethető
+                            </mat-radio-button>
+                            <mat-radio-button class="example-radio-button" value="költséges">
+                                költséges</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <mat-divider></mat-divider>
+
+                    <div class="row pt-1">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Előkészítési idő (perc):</label>
+                                <input name="time_pre" type="number" class="form-control pl-3"
+                                    formControlName="time_pre">
+                                <div [hidden]="recipeForm.controls.time_pre?.valid || recipeForm.controls.time_pre?.pristine "
+                                    class="error-message">
+                                    Előkészítési idő csak szám lehet!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Főzési / sütési idő (perc):</label>
+                                <input name="time_cooking" type="number" class="form-control pl-3"
+                                    formControlName="time_cooking">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sütés esetén a sütési hőfok (celsius)</label>
+                        <input name="degree" type="number" class="form-control pl-3" formControlName="degree">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Index (nyitóoldalon a recept sorszáma):</label>
+                        <input name="index" type="number" class="form-control pl-3" formControlName="index">
+                        <div [hidden]="recipeForm.controls.index?.valid || recipeForm.controls.index?.pristine "
+                            class="error-message">
+                            Az Index csak számot tartalmazhat!
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>A recept kalória értéke:</label>
+                                <input name="calory" type="number" class="form-control pl-3" formControlName="calory">
+                                <div [hidden]="recipeForm.controls.calory?.valid || recipeForm.controls.calory?.pristine "
+                                    class="error-message">
+                                    A kalória csak számot tartalmazhat!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Hány adag készíthető el a receptből?</label>
+                                <input name="portion" type="number" class="form-control pl-3" formControlName="portion">
+                                <div [hidden]="recipeForm.controls.portion?.valid || recipeForm.controls.portion?.pristine "
+                                    class="error-message">
+                                    Az adag csak szám lehet!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Recept felvezető sztori (nem kötelező):</label>
+                        <input name="story" type="text" class="form-control pl-3" formControlName="story"
+                            placeholder="Kedvicsináló mondat(ok) a recept elkészítéséhez.">
+                    </div>
+
+
+                    <mat-divider></mat-divider>
+
+                    <div class="form-group" formArrayName="ingrArray">
+
+                        <h3>HOZZÁVALÓK:</h3>
+
+                        <div class="row mb-2" *ngFor="let ingredient of ingrArray().controls; let i=index"
+                            [formGroupName]="i">
+                            <div class="col-2">
+                                <label>Mennyiség:</label>
+                                <input type="text" formControlName="mennyiseg" class="form-control">
+                            </div>
+                            <div class="col-2">
+                                <label>Egység:</label>
+                                <input type="text" formControlName="egyseg" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label>Hozzávaló:</label>
+                                <input type="text" formControlName="hozzavalo" class="form-control">
+                            </div>
+
+                            <div class="col-2">
+                                <button (click)="removeIngredient(i)" class="btn btn-danger"><span
+                                        class="material-icons">delete</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center"><button type="button" (click)="addIngredient()"
+                            class="btn btn-primary">Hozzávalók hozzáadása
+                            +</button></div>
+
+                    <div class="form-group" formArrayName="stepsArray">
+
+                        <h3>Elkészítési lépések:</h3>
+
+                        <div class="row mb-2" *ngFor="let step of stepsArray().controls; let i=index"
+                            [formGroupName]="i">
+                            <div class="col-10">
+                                <label>{{i+1}}. lépés:</label>
+                                <input type="text" formControlName="lepes" class="form-control">
+                            </div>
+                            <div class="col-2">
+                                <button (click)="removeStep(i)" class="btn btn-danger"><span
+                                        class="material-icons">delete</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center"><button type="button" (click)="addStep()"
+                            class="btn btn-primary">Lépések hozzáadása
+                            +</button></div>
+
+                    <div class="form-group">
+                        <label class="kepgomb" for="file">Receptkép feltöltés - ide kattintva töltsd fel a képet
+                            <span class="pluszjel">+</span> </label>
+                        <input formControlName="file" type="file" id="file" class="form-control"
+                            (change)="onFileChange($event)">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Elküld</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

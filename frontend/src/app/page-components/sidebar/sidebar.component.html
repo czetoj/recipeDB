@@ -1,0 +1,47 @@
+<div class="sidebar" data-color="purple" data-image="../../../assets/img/sidebar-4.jpg">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+      Tip 2: you can also add an image using data-image tag
+  -->
+
+    <div class="logo">
+        <a routerLink="/" class="simple-text logo-normal">
+            <img class="logo" src="../../../assets/img/recept_logo.svg" alt="logo">
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/dashboard">
+                    <i class="material-icons">analytics</i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="dashboard/recipes">
+                    <i class="material-icons">menu_book</i>
+                    <p>Receptek</p>
+                </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="dashboard/ingredients">
+                    <i class="material-icons">grain</i>
+                    <p>Hozzávalók</p>
+                </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="dashboard/messages">
+                    <i class="material-icons">mail_outline</i>
+                    <p>Üzenetek</p>
+                </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="dashboard/users">
+                    <i class="material-icons">manage_accounts</i>
+                    <p>Felhasználók</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+.card .card-header-purplish:not(.card-header-icon):not(.card-header-text) {
+    background: linear-gradient(60deg, #9c27b0, #740288);
+}
+
+.color-purple {
+    color: #9c27b0;
+}
+
+.color-purplish {
+    color: #740288;
+}
+
+.sortedHeads:hover {
+    cursor: pointer;
+    background-color: rgb(240, 240, 240);
+}
+tr:hover {
+    background-color: rgb(220, 220, 220) !important;
+}
+
+// a filter designhoz kell
+.options-control {
+    padding: 0 !important;
+    height: 48px !important;
+}
+input[type="text"],
+select,
+textarea {
+    height: 48px !important;
+}
+// a filter designhoz kell
+
+hr {
+    border-top: 1px solid white;
+}
+
+.sumline {
+    border-top: 3px dashed darkgrey;
+    border-bottom: 3px dashed darkgrey;
+}
+
+.custom-select {
+    display: inline-block;
+    width: 100%;
+    height: calc(2.4375rem + 2px);
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    background-image: url(../../../assets/img/caret-down.svg);
+    background-size: auto;
+    background-size: 10px 30px;
+    border-bottom: 1px solid #d2d2d2;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-position-x: 100%;
+    background-position-y: 10px;
+    margin-right: 8px;
+}

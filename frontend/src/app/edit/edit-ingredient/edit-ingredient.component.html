@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card p-3">
+
+                <div class="card-header card-header-purplish">
+                    <h4 class="card-title">Hozzávaló módosítása</h4>
+                    <p class="card-category">Itt módosíthatod a hozzávalók részleteit!</p>
+
+                </div>
+
+                <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit(ingredient)">
+
+                    <div class="form-group">
+                        <label for="name">Hozzávaló neve:</label>
+                        <input type="text" class="form-control pl-3" id="name" name="name" formControlName="name">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Mennyiségi egység</label>
+                        <input name="unit" type="text" class="form-control pl-3" formControlName="unit">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kalória:</label>
+                        <input name="calory" type="number" class="form-control pl-3" formControlName="calory">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-success">Elküld</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

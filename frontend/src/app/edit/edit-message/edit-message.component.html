@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card p-3">
+
+                <div class="card-header card-header-purplish">
+                    <h4 class="card-title">Üzenet módosítása</h4>
+                    <p class="card-category">Itt módosíthatod az üzenet részleteit!</p>
+
+                </div>
+
+                <form [formGroup]="messageForm" (ngSubmit)="onSubmit(message)">
+
+                    <div class="form-group">
+                        <label for="email">Küldő email címe:</label>
+                        <input type="text" class="form-control pl-3" id="email" name="email" formControlName="email">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Küldő neve:</label>
+                        <input name="sender" type="text" class="form-control pl-3" formControlName="sender">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Üzenet tárgya:</label>
+                        <input name="subject" type="text" class="form-control pl-3" formControlName="subject">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Üzenet tartalma:</label>
+                        <input name="message" type="text" class="form-control pl-3" formControlName="message">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="difficulty">Üzenet státusza:</label>
+                        <mat-radio-group name="status" formControlName="status">
+                            <mat-radio-button class="radio-right" value="függő">
+                                függő
+                            </mat-radio-button>
+                            <mat-radio-button class="radio-right" value="elintézve">
+                                elintézve</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Elküld</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+.ing-q {
+    padding: 1rem;
+    line-height: 2;
+}
+.ing-u {
+    padding: 1rem;
+    line-height: 2;
+}
+.ing-i {
+    padding: 1rem;
+    line-height: 2;
+}
+
+ol {
+    max-width: 600px;
+    counter-reset: my-awesome-counter;
+    list-style: none;
+    padding-left: 40px;
+}
+ol li {
+    margin: 0 0 0.5rem 0;
+    counter-increment: my-awesome-counter;
+    position: relative;
+}
+ol li::before {
+    content: counter(my-awesome-counter);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: absolute;
+    --size: 32px;
+    left: calc(-1 * var(--size) - 10px);
+    line-height: var(--size);
+    width: var(--size);
+    height: var(--size);
+    top: 0;
+    //transform: rotate(-10deg);
+    background: #9c27b0;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 1px 1px 0 #999;
+}
+
+hr.style15 {
+    border-top: 4px double plum;
+    text-align: center;
+}
+hr.style15:after {
+    content: "\002665";
+    display: inline-block;
+    position: relative;
+    top: -15px;
+    padding: 0 10px;
+    background: #f0f0f0;
+    color: #9c27b0;
+    font-size: 18px;
+}
+
+hr.style16 {
+    border-top: 4px double plum;
+    text-align: center;
+}
+hr.style16:after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    padding: 0 10px;
+    background: #f0f0f0;
+    color: #9c27b0;
+    max-width: 30rem;
+}

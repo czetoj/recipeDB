@@ -1,0 +1,30 @@
+.sidebar[data-color="purple"] li:nth-of-type(1).active > a{
+    background-color: #475a63;
+}
+
+.sidebar[data-color="purple"] li:nth-of-type(2).active > a{
+    background-color: #26c6da;
+}
+
+.sidebar[data-color="purple"] li:nth-of-type(3).active > a{
+    background-color: #c7370c;
+}
+.sidebar[data-color="purple"] li:nth-of-type(4).active > a{
+    background-color: #ffa726;
+}
+.sidebar[data-color="purple"] li:nth-of-type(5).active > a{
+    background-color: #5cb85c;
+}
+
+
+
+.sidebar[data-color="purple"] li.active > a {
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14),0 7px 10px -5px rgba(90, 89, 90, 0.4);
+}
+
+.logo {
+    width: 80%;
+    margin-left: 1.5rem;
+    margin-bottom: -1.5rem;
+    margin-top: -1rem
+}

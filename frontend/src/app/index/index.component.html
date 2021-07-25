@@ -1,0 +1,38 @@
+<ul class="card">
+
+    <li class="card-item" *ngFor="let recipe of (recipeList$ | async)">
+        <div class="card-content">
+
+            <div class="card-image">
+                <img src="../../assets/img/recipes/{{recipe.img}}.jpg" alt="{{recipe.img}}">
+
+                <div class="card-destination">
+                    <span class="card-town">
+                        {{recipe.name}}
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="card-details">
+                <p class="card-description">
+                    {{recipe.story}}
+                </p>
+
+                <div class="card-photos-videos">
+                    <span class="card-date">
+                        {{recipe.difficulty}}
+                    </span>
+                    <span class="card-photos">
+                        {{recipe.price_friendly}}
+                    </span>
+                    <span class="card-videos">
+                        {{recipe.calory}} kcal
+                    </span>
+                </div>
+
+                <a routerLink="/recipes/{{recipe._id}}" class="card-button">Részletek</a>
+            </div>
+        </div>
+    </li>
+</ul>

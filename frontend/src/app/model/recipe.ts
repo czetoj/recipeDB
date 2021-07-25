@@ -12,9 +12,10 @@ export class Recipe {
     degree: number = 0;
     index: number = 0;
     calory: number = 0;
-    description: string = '';
-    ingredients: Ingredient[] = [];
+    description: string[] = [];
+    ingredients: string[] = [];
     ingredients_quantity: Number[] = [];
+    ingredients_unit: string[] = [];
     img: string = '';
     story: string = '';
     portion: number = 0;

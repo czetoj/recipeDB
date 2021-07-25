@@ -1,0 +1,188 @@
+<div class="content">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">menu_book</i>
+                        </div>
+                        <p class="card-category">Receptek száma</p>
+                        <h3 class="card-title"> {{ recipes | numberhu }} db</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">label_important</i> Unpaid bills (pieces):
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">manage_accounts</i>
+                        </div>
+                        <p class="card-category">Felhasználók száma</p>
+                        <h3 *ngIf="userList$ | async; let list" class="card-title">
+                            {{list.length}} fő
+                        </h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">how_to_reg</i> Active users:
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">grain</i>
+                        </div>
+                        <p class="card-category">Hozzávalók</p>
+                        <h3 class="card-title">
+                            <small>Ft</small>
+                        </h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">add_business</i> Active products:
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">shopping_cart</i>
+                        </div>
+                        <p class="card-category">Menük</p>
+                        <h3 class="card-title">db</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">local_offer</i> Number of unpaid orders:
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success d-flex justify-content-between">
+                        Kategóriánkénti receptek száma
+                        <div>
+                            <i (click)="onChartTypeBar()" class="material-icons iconhover">bar_chart</i>
+                            <i (click)="onChartTypePie()" class="material-icons iconhover">pie_chart</i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <p class="card-category">
+                            <app-recipe-bar-chart [chartType]="chartType" [bgc]="recipeBackgroundColorArray"
+                                [amounts]="recipeAmountArray" [ids]="recipeIdArray">
+                            </app-recipe-bar-chart>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> updated {{timer}} <span *ngIf="timer != 1">
+                                &nbsp;minutes&nbsp;
+                            </span><span *ngIf="timer == 1">&nbsp;minute&nbsp;</span>ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success d-flex justify-content-between">
+                        Felhasználók által feltöltött receptek megoszlása
+                        <div>
+                            <i (click)="onChartTypeBar()" class="material-icons iconhover">bar_chart</i>
+                            <i (click)="onChartTypePie()" class="material-icons iconhover">pie_chart</i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <p class="card-category">
+                            <app-user-bar-chart [chartType]="chartType" [bgc]="userBackgroundColorArray"
+                                [amounts]="userAmountArray" [ids]="userIdArray">
+                            </app-user-bar-chart>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> updated {{timer}} <span *ngIf="timer != 1">
+                                &nbsp;minutes&nbsp;
+                            </span><span *ngIf="timer == 1">&nbsp;minute&nbsp;</span>ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-primary">
+                        <h4 class="card-title">Top receptek</h4>
+                        <p class="card-category">Az öt legnépszerűbb recept</p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-primary product">
+                                <th>Név</th>
+                                <th>Nehézség</th>
+                                <th>Pénztárcabarát</th>
+                            </thead>
+                            <tbody>
+
+                                <tr *ngFor="let recipe of recipeList$ | async | showLatestFive">
+                                    <td>{{recipe.name}}</td>
+                                    <td>{{recipe.difficulty}}</td>
+                                    <td>{{recipe.price_friendly}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <app-pagination [length]="ArrayLength" (onLength)="onLength($event)" (onIndex)="onIndex($event)">
+                        </app-pagination> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Our recently joined users</h4>
+                        <p class="card-category">Show's the five latest user of our company</p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-primary">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

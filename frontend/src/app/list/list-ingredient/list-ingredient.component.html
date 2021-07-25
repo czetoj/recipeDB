@@ -1,0 +1,93 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <button class="btn bg-darkgrey btn-block mb-5" [routerLink]="['/dashboard/ingredients/new']">
+                    <span class="material-icons">
+                        library_add
+                    </span> Új hozzávalók hozzáadása </button>
+
+
+                <div class="card">
+                    <div class="card-header card-header-purplish">
+                        <h4 class="card-title text-white">Hozzávalók listája</h4>
+                        <p class="card-category"> Hozzávalók listája. Hozzáadni, módosítani és törölni lehet egy
+                            hozzávalót.
+                        </p>
+                    </div>
+                    <!-- Filter component -->
+                    <div class="col-12 mx-auto row py-3 product-search">
+                        <select [(ngModel)]="filterKey"
+                            class="options-control form-control col-1 ml-auto py-3 custom-select">
+                            <option *ngFor="let prop of ingredientProperties" [value]="prop">{{prop}}</option>
+                        </select>
+                        <input [(ngModel)]="phrase" class="form-control mx-1 col-4 py-3" type="text"
+                            placeholder="Search">
+                        <button class="btn bg-darkgrey col-1 mr-auto" type="submit"><span
+                                class="material-icons">search</span></button>
+                    </div>
+                    <!-- Filter component -->
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="color-grey">
+                                    <th class="sortedHeads" *ngFor="let col of cols" id="{{ col.key }}" draggable="true"
+                                        (dragover)="$event.preventDefault()" (dragstart)="onHeaderDragStart($event)"
+                                        (drop)="onHeaderDrop($event)" (click)="onChangeSort(col.key)">
+                                        {{col.title }}&nbsp;
+                                        <span *ngIf="ascend" class="material-icons">south</span>
+                                        <span *ngIf="!ascend" class="material-icons">north</span>
+                                    </th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let ingredient of ingredientList$ | async | filter:filterKey:phrase | sort: sortKey: ascend |slice: (indexPage -1)*pagiLength: indexPage*pagiLength">
+                                        <td *ngFor="let col of cols">
+                                            {{ ingredient[col.key] }}
+                                        </td>
+
+                                        <td>
+                                            <div class="btn-group w-100">
+                                                <button [routerLink]="['/dashboard/ingredients/' + ingredient._id]"
+                                                    class="btn bg-darkgrey ml-auto">
+                                                    <span class="material-icons">create</span></button>
+                                                <button (click)="onDelete(ingredient)" class="btn btn-danger"><span
+                                                        class="material-icons">delete</span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <hr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+
+                                        <td class="font-weight-bold">
+                                            Current amount:&nbsp;
+                                            {{ ingredientList$ | async | filter:filterKey:phrase | slice: (indexPage
+                                            -1)*pagiLength:
+                                            indexPage*pagiLength | summary:'amount' | numberhu }} Ft<br>
+                                            Total amount:&nbsp;
+                                            {{ ingredientList$ | async | summary:'amount' | numberhu }} Ft
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <app-pagination [length]="ingredientList$ | async | filter:filterKey:phrase | length"
+                        (onLength)="onLength($event)" (onIndex)="onIndex($event)">
+                    </app-pagination>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

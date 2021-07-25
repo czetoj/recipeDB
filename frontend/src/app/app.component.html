@@ -1,2 +1,14 @@
-Recipes
-<pre>{{recipes | async | json}}</pre>
+<div class="wrapper ">
+  <app-sidebar></app-sidebar>
+  <div class="main-panel">
+    <!-- Navbar -->
+    <app-navbar></app-navbar>
+    <!-- End Navbar -->
+    <div class="content">
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
