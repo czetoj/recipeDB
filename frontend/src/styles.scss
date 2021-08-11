@@ -213,3 +213,53 @@
   background-image: linear-gradient(0deg, #ca6f07 2px, rgba(156, 39, 176, 0) 0),
     linear-gradient(0deg, #d2d2d2 1px, hsla(0, 0%, 82%, 0) 0);
 }
+
+// Saját css //////////////////////////////////////
+
+// táblázat fejléc design
+.sortedHeads:hover {
+  cursor: pointer;
+  background-color: rgb(240, 240, 240);
+}
+tr:hover {
+  background-color: rgb(220, 220, 220) !important;
+}
+
+.error-message {
+  font-style: italic;
+  color: rgb(207, 21, 21);
+  position: relative;
+  animation: error 0.4s ease 3;
+}
+
+@keyframes error {
+  0% {
+    left: 0px;
+  }
+  50% {
+    left: 10px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+label.difficulty {
+  display: block;
+}
+
+label {
+  color: rgb(94, 94, 94);
+}
+
+.invalid-feedback {
+  color: red;
+}
+
+a {
+  cursor: pointer;
+}
+
+.navbar-nav {
+  justify-content: space-between;
+}

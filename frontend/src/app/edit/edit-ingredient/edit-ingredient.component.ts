@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -21,6 +21,8 @@ export class EditIngredientComponent implements OnInit {
   );
 
   ingredient: Ingredient = new Ingredient()
+  new: boolean = false
+  submitted: boolean = false
 
   constructor(
     private fb: FormBuilder,
@@ -30,13 +32,14 @@ export class EditIngredientComponent implements OnInit {
     private toastr: ToastrService,
   ) {
     this.ingredientForm = this.fb.group({
-      name: [''],
-      unit: [''],
-      calory: ['']
+      name: ['', Validators.required],
+      unit: ['', Validators.required],
+      calory: ['', [Validators.required, Validators.pattern("^([1-9][0-9]{0,2}|1000)$")]]
     });
 
     this.ingredient$.subscribe(data => {
       this.ingredient = data || new Ingredient()
+      if (this.ingredient.name == "") { this.new = true }
       this.ingredientForm.get('name')?.setValue(this.ingredient.name)
       this.ingredientForm.get('unit')?.setValue(this.ingredient.unit)
       this.ingredientForm.get('calory')?.setValue(this.ingredient.calory)
@@ -55,11 +58,21 @@ export class EditIngredientComponent implements OnInit {
     }
   }
 
-  showInfo(type: string): void {
-    this.toastr.info(`You have successfully ${type} an ingredient!`, `${type}`, { timeOut: 3000 });
+  showInfo(type1: string, type2: string): void {
+    this.toastr.info(`Sikeresen ${type1} egy hozzávalót!`, `${type2}`, { timeOut: 3000 });
+  }
+
+  get f() {
+    return this.ingredientForm.controls
   }
 
   onSubmit(ingredient: Ingredient) {
+
+    this.submitted = true
+
+    if (this.ingredientForm.invalid) {
+      return
+    }
 
     this.ingredient.name = this.ingredientForm.value['name']
     this.ingredient.unit = this.ingredientForm.value['unit']
@@ -70,12 +83,12 @@ export class EditIngredientComponent implements OnInit {
     if (ingredient._id === "") {
       this.ingredientService.create(ingredient)
       this.router.navigate(['dashboard/ingredients'])
-      this.showInfo('created')
+      this.showInfo('létrehoztál', 'Létrehozva')
     } else {
       this.ingredientService.update(ingredient).subscribe(
         () => this.router.navigate(['dashboard/ingredients'])
       );
-      this.showInfo('updated');
+      this.showInfo('módosítottál', 'Módosítva');
     }
 
     this.ingredientService.upload(formData);

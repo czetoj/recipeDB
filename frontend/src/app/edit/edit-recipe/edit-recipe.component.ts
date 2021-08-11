@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -21,6 +21,8 @@ export class EditRecipeComponent implements OnInit {
   );
 
   recipe: Recipe = new Recipe()
+  new: boolean = false
+  submitted: boolean = false
 
   constructor(
     private fb: FormBuilder,
@@ -30,12 +32,12 @@ export class EditRecipeComponent implements OnInit {
     private toastr: ToastrService,
   ) {
     this.recipeForm = this.fb.group({
-      name: [''],
-      category: [''],
-      difficulty: [''],
-      price_friendly: [''],
-      time_pre: [''],
-      time_cooking: [''],
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+      difficulty: ['', Validators.required],
+      price_friendly: ['', Validators.required],
+      time_pre: ['', [Validators.required, Validators.pattern("^([1-9][0-9]{0,2}|1000)$")]],
+      time_cooking: ['', [Validators.required, Validators.pattern("^([1-9][0-9]{0,2}|1000)$")]],
       degree: [''],
       index: [''],
       calory: [''],
@@ -50,6 +52,7 @@ export class EditRecipeComponent implements OnInit {
     this.stepsArray().push(this.newStepGroup());
     this.recipe$.subscribe(data => {
       this.recipe = data || new Recipe()
+      if (this.recipe.name == "") { this.new = true }
       this.recipeForm.get('name')?.setValue(this.recipe.name)
       this.recipeForm.get('category')?.setValue(this.recipe.category)
       this.recipeForm.get('difficulty')?.setValue(this.recipe.difficulty)
@@ -77,6 +80,7 @@ export class EditRecipeComponent implements OnInit {
       for (let i = 0; i < this.recipe.description.length; i++) {
         stepControlArray.controls[i].get('lepes')?.setValue(this.recipe.description[i]);
       }
+      console.log(this.recipeForm)
     })
   }
 
@@ -92,14 +96,14 @@ export class EditRecipeComponent implements OnInit {
 
   newIngrGroup(): FormGroup {
     return this.fb.group({
-      mennyiseg: [''],
-      egyseg: [''],
-      hozzavalo: [''],
+      mennyiseg: ['', Validators.required],
+      egyseg: ['', Validators.required],
+      hozzavalo: ['', Validators.required],
     })
   }
   newStepGroup(): FormGroup {
     return this.fb.group({
-      lepes: [''],
+      lepes: ['', Validators.required],
     })
   }
 
@@ -132,11 +136,22 @@ export class EditRecipeComponent implements OnInit {
     }
   }
 
-  showInfo(type: string): void {
-    this.toastr.info(`You have successfully ${type}  a recipe!`, `${type}`, { timeOut: 3000 });
+  showInfo(type1: string, type2: string): void {
+    this.toastr.info(`Sikeresen ${type1} egy receptet!`, `${type2}`, { timeOut: 3000 });
+  }
+
+  get f() {
+    return this.recipeForm.controls
   }
 
   onSubmit(recipe: Recipe) {
+
+    this.submitted = true
+
+    if (this.recipeForm.invalid) {
+      return
+    }
+
     // this.recipe.ingredients[0] = this.productForm.value['ingrArray'][0]['hozzavalo']
     this.recipe.name = this.recipeForm.value['name']
     this.recipe.category = this.recipeForm.value['category']
@@ -168,12 +183,12 @@ export class EditRecipeComponent implements OnInit {
     if (recipe._id === "") {
       this.recipeService.create(recipe)
       this.router.navigate(['dashboard/recipes'])
-      this.showInfo('created')
+      this.showInfo('létrehoztál', 'Létrehozva')
     } else {
       this.recipeService.update(recipe).subscribe(
         () => this.router.navigate(['dashboard/recipes'])
       );
-      this.showInfo('updated');
+      this.showInfo('módosítottál', 'Módosítva');
     }
 
 

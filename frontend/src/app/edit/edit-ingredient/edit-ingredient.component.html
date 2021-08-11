@@ -1,12 +1,16 @@
 <div class="container">
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-md-8 offset-md-2 mx-auto">
             <div class="card p-3">
 
-                <div class="card-header card-header-purplish">
-                    <h4 class="card-title">Hozzávaló módosítása</h4>
-                    <p class="card-category">Itt módosíthatod a hozzávalók részleteit!</p>
+                <div *ngIf="new" class="card-header card-header-cherrish">
+                    <h4 class="card-title"> Új hozzávaló felvitele</h4>
+                    <p class="card-category">Itt adhatod meg egy új hozzávaló adatait</p>
+                </div>
 
+                <div *ngIf="!new" class="card-header card-header-cherrish">
+                    <h4 class="card-title">Hozzávaló módosítása</h4>
+                    <p class="card-category">Itt módosíthatod a hozzávaló adatait</p>
                 </div>
 
                 <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit(ingredient)">
@@ -14,21 +18,33 @@
                     <div class="form-group">
                         <label for="name">Hozzávaló neve:</label>
                         <input type="text" class="form-control pl-3" id="name" name="name" formControlName="name">
+                        <div *ngIf="submitted && ingredientForm.controls.name.errors?.required" class="error">
+                            <p>A hozzávaló neve kitöltése kötelező!</p>
+                        </div>
                     </div>
 
 
                     <div class="form-group">
                         <label>Mennyiségi egység</label>
                         <input name="unit" type="text" class="form-control pl-3" formControlName="unit">
+                        <div *ngIf="submitted && ingredientForm.controls.unit.errors?.required" class="error">
+                            <p>A mennyiségi egység kitöltése kötelező!</p>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Kalória:</label>
                         <input name="calory" type="number" class="form-control pl-3" formControlName="calory">
+                        <div *ngIf="submitted && (f.calory.errors?.pattern ||f.calory.errors?.required)" class="error">
+                            <p>A kalória kitöltése kötelező!</p>
+                        </div>
                     </div>
 
 
                     <button type="submit" class="btn btn-success">Elküld</button>
+                    <div *ngIf="submitted && ingredientForm.invalid">
+                        <p class="error">A hibás mezők javítása szükséges!</p>
+                    </div>
                 </form>
             </div>
         </div>

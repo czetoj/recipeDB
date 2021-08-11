@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="purple" data-image="../../../assets/img/sidebar-4.jpg">
+<div class="sidebar">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -11,35 +11,68 @@
         </a>
     </div>
     <div class="sidebar-wrapper">
+
+        <div class="row mobil-auth mx-auto pt-2">
+            <ul class="d-flex flex-row align-items-center mb-0">
+                <li *ngIf="user" class="nav-item">
+                    <span> Üdvözöljük {{user.firstName}}!</span>
+                </li>
+                <li *ngIf="user" class="nav-item">
+                    <a class="nav-link" routerLink='/profil'>
+                        <i class="material-icons">person</i> Profil
+                    </a>
+                </li>
+                <li *ngIf="!user" class="nav-item">
+                    <a class="nav-link" routerLink='/register'>
+                        <i class="material-icons">person</i> Regisztráció
+                    </a>
+                </li>
+                <li *ngIf="!user" class="nav-item">
+                    <a class="nav-link" routerLink="/login">
+                        <i class="material-icons">login</i> Belépés
+                    </a>
+                </li>
+                <li *ngIf="user" class="nav-item">
+                    <a class="nav-link" (click)="onLogout()">
+                        <i class="material-icons">logout</i> Kilépés
+                    </a>
+                </li>
+            </ul>
+        </div>
+
         <ul class="nav">
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/dashboard">
-                    <i class="material-icons">analytics</i>
-                    <p>Dashboard</p>
-                </a>
-            </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="dashboard/recipes">
-                    <i class="material-icons">menu_book</i>
+            <li class="nav-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link">
+                    <i class="material-icons">home</i>
                     <p>Receptek</p>
                 </a>
             </li>
+
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="dashboard/ingredients">
-                    <i class="material-icons">grain</i>
-                    <p>Hozzávalók</p>
+                <a class="nav-link">
+                    <i class="material-icons">restaurant_menu</i>
+                    <p>Menüajánló</p>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="dashboard/messages">
-                    <i class="material-icons">mail_outline</i>
-                    <p>Üzenetek</p>
+
+            <li class="nav-item" routerLink="/upload" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link">
+                    <i class="material-icons">upload_file</i>
+                    <p>Receptfeltöltés</p>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="dashboard/users">
-                    <i class="material-icons">manage_accounts</i>
-                    <p>Felhasználók</p>
+        </ul>
+
+        <hr>
+
+        <ul *ngIf="user" class="nav">
+
+            <li *ngFor="let nav of navigation" class="nav-item" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="{{nav.href}}">
+                    <i class="material-icons">{{nav.icon}}</i>
+                    <p>{{nav.label}}</p>
                 </a>
             </li>
         </ul>

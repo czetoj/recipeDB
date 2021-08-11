@@ -4,6 +4,7 @@ import { RecipeService } from '../service/recipe.service';
 import { UserService } from '../service/user.service';
 import { Recipe } from '../model/recipe';
 import { User } from '../model/user';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class DashboardComponent implements OnInit {
 
 
   // User grafikonhoz.
-  userList$: BehaviorSubject<User[]> = this.userService.list$;
+  // userList$: BehaviorSubject<User[]> = this.userService.list$;
+  userList$: Observable<User[]> = this.userService.getAll();
   userAmountArray: number[] = [];
   userIdArray: string[] = [];
   userBackgroundColorArray: string[] = [];
@@ -67,7 +69,6 @@ export class DashboardComponent implements OnInit {
       this.recipeAmountArray[0] = this.desszert
       this.recipeAmountArray[1] = this.leves
       this.recipeAmountArray[2] = this.fozelek
-      console.log(this.desszert)
     });
 
 

@@ -7,4 +7,6 @@ export class User {
     password: string = '';
     countOfRecipes: number = 0;
     start: Date = new Date();
+    role: string = '';
+    token?: string;
 }

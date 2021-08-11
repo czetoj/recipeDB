@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -21,6 +21,8 @@ export class EditMessageComponent implements OnInit {
   );
 
   message: Message = new Message()
+  new: boolean = false
+  submitted: boolean = false
 
   constructor(
     private fb: FormBuilder,
@@ -30,15 +32,16 @@ export class EditMessageComponent implements OnInit {
     private toastr: ToastrService,
   ) {
     this.messageForm = this.fb.group({
-      email: [''],
-      sender: [''],
-      subject: [''],
-      message: [''],
+      email: ['', [Validators.required, Validators.email]],
+      sender: ['', Validators.required],
+      subject: ['', Validators.required],
+      message: ['', Validators.required],
       status: ['']
     });
 
     this.message$.subscribe(data => {
       this.message = data || new Message()
+      if (this.message.email == "") { this.new = true }
       this.messageForm.get('email')?.setValue(this.message.email)
       this.messageForm.get('sender')?.setValue(this.message.sender)
       this.messageForm.get('subject')?.setValue(this.message.subject)
@@ -59,11 +62,17 @@ export class EditMessageComponent implements OnInit {
     }
   }
 
-  showInfo(type: string): void {
-    this.toastr.info(`You have successfully ${type} an message!`, `${type}`, { timeOut: 3000 });
+  showInfo(type1: string, type2: string): void {
+    this.toastr.info(`Sikeresen ${type1} egy üzenetet!`, `${type2}`, { timeOut: 3000 });
   }
 
   onSubmit(message: Message) {
+
+    this.submitted = true
+
+    if (this.messageForm.invalid) {
+      return
+    }
 
     this.message.email = this.messageForm.value['email']
     this.message.sender = this.messageForm.value['sender']
@@ -76,12 +85,12 @@ export class EditMessageComponent implements OnInit {
     if (message._id === "") {
       this.messageService.create(message)
       this.router.navigate(['dashboard/messages'])
-      this.showInfo('created')
+      this.showInfo('létrehoztál', 'Létrehozva')
     } else {
       this.messageService.update(message).subscribe(
         () => this.router.navigate(['dashboard/messages'])
       );
-      this.showInfo('updated');
+      this.showInfo('módosítottál', 'Módosítva');
     }
 
     this.messageService.upload(formData);

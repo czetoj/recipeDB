@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
     <div class="container-fluid">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
@@ -8,25 +8,89 @@
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:;">
-                        <i class="material-icons">notifications</i> Notifications
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:;">
-                        <i class="material-icons">person</i> Profile
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:;">
-                        <i class="material-icons">login</i> Login
-                    </a>
-                </li>
-                <!-- your navbar here -->
-            </ul>
+
+        <div class="collapse navbar-collapse justify-content-between">
+            <div class="etlap d-flex align-items-center">
+                <ul class="navbar-nav d-flex">
+
+                    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" routerLink="/index/Leves">
+                            <img class="menu-img" src="../../../assets/img/svg/menu_bowl.svg" alt="Leves"><span
+                                class="menu-name">Leves</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" routerLink="/index/Húsos fogás">
+                            <img class="menu-img" src="../../../assets/img/svg/menu_chicken.svg" alt="Hús"><span
+                                class="menu-name">Hús</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" routerLink="/index/Halak">
+                            <img class="menu-img" src="../../../assets/img/svg/menu_fish.svg" alt="Hal"><span
+                                class="menu-name">Hal</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" routerLink="/index/Saláta">
+                            <img class="menu-img" src="../../../assets/img/svg/menu_salad.svg" alt="Saláta">Saláta
+                        </a>
+                    </li>
+
+                    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" routerLink="/index/Főzelék">
+                            <img class="menu-img" src="../../../assets/img/svg/menu_sauce.svg" alt="Főzelék">Főzelék
+                        </a>
+                    </li>
+
+                    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" routerLink="/index/Tészta">
+                            <img class="menu-img" src="../../../assets/img/svg/menu_pasta.svg" alt="Tészta">Tészta
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" routerLink="/index/Desszert">
+                            <img class="menu-img" src="../../../assets/img/svg/menu_dessert.svg" alt="Desszert">Desszert
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="d-flex">
+                <ul class="d-flex flex-row align-items-center mb-0">
+                    <li *ngIf="user" class="nav-item">
+                        <span> Üdvözöljük {{user.firstName}}!</span>
+                    </li>
+                    <li *ngIf="user" class="nav-item">
+                        <a class="nav-link" routerLink='/profil'>
+                            <i class="material-icons">person</i> Profil
+                        </a>
+                    </li>
+                    <li *ngIf="!user" class="nav-item">
+                        <a class="nav-link" routerLink='/register'>
+                            <i class="material-icons">person</i> Regisztráció
+                        </a>
+                    </li>
+                    <li *ngIf="!user" class="nav-item">
+                        <a class="nav-link" routerLink="/login">
+                            <i class="material-icons">login</i> Belépés
+                        </a>
+                    </li>
+                    <li *ngIf="user" class="nav-item">
+                        <a class="nav-link" (click)="onLogout()">
+                            <i class="material-icons">logout</i> Kilépés
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+
     </div>
+
 </nav>

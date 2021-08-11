@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgIterable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { ITableColumn, ConfigService } from 'src/app/service/config.service';
 import { UserService } from 'src/app/service/user.service';
@@ -13,7 +13,8 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ListUserComponent implements OnInit {
 
-  userList$: BehaviorSubject<User[]> = this.userService.list$;
+  // userList$: BehaviorSubject<User[]> = this.userService.list$;
+  userList$: Observable<User | User[] | NgIterable<User> | null | undefined | any> = this.userService.get();
   userProperties: string[] = Object.keys(new User());
 
   filterKey = 'lastName';
@@ -36,7 +37,7 @@ export class ListUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getAll();
+    // this.userService.getAll();
     this.userList$.subscribe(data => {
       this.ArrayLength = data.length
     });
@@ -70,13 +71,17 @@ export class ListUserComponent implements OnInit {
   }
 
   onDelete(user: User): void {
-    this.userService.remove(user)
-    this.showWarning();
-    this.router.navigate(['dashboard/users'])
+    this.userService.remove(user).subscribe(
+      () => {
+        this.showWarning();
+        this.userList$ = this.userService.get()
+        this.router.navigate(['dashboard/users'])
+      }
+    )
   }
 
   showWarning(): void {
-    this.toastr.warning('You have successfully deleted a user!', 'Deleted', { timeOut: 4000 });
+    this.toastr.warning('Sikeresen töröltél egy felhasználót!', 'Törölve', { timeOut: 4000 });
   }
 
 }

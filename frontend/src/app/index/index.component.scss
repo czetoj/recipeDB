@@ -8,15 +8,10 @@ li {
 
 img {
   image-orientation: from-image;
-  /* eredeti képarány megtartása, néha a progi protrait-ből landscape-t készít */
   max-height: 100%;
-  /* szülőelem magasságát kitöltjük */
   min-width: 100%;
-  /* szülőelem szélességét kitöltjük */
   object-fit: cover;
-  /* kép méretarányos illesztése */
   vertical-align: bottom;
-  /* ennek nincs igazán szerepe */
 }
 
 /*Flex items*/
@@ -28,31 +23,45 @@ img {
   margin: 1rem auto;
 }
 
+/* mobil nézet */
 .card-item {
   display: flex;
   padding: 0.5rem;
   width: 100%;
-  height: 100%;
   outline: 1px dashed rgba(251, 246, 243, 0.8);
   outline-offset: -1.5rem;
 }
 /* mobil nézet */
 
+/* tablet nézet */
 @media all and (min-width: 40em) {
   .card-item {
     width: 50%;
   }
+  .card-features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 /* tablet nézet */
 
+/* desktop nézet */
 @media all and (min-width: 60em) {
   .card-item {
     width: 33.33%;
   }
 }
+
+@media all and (min-width: 1200px) {
+  .card-features {
+    flex-direction: row;
+  }
+}
 /* desktop nézet */
 
-.card-town {
+.card-recipe-name {
   font-size: 1.3rem;
   font-weight: bold;
   display: block;
@@ -67,17 +76,13 @@ img {
 
 .card-image {
   position: relative;
-  height: 300px;
+  max-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* a kép mindig a card-ban marad */
-/* ha a {flex: 1} ráírnánk, akkor a képek magassága 200px, 210px, 220px lenne */
-/* ha a {height:40rem;} lenne, akkor azonos képmagasság lenne, de shrinkeléskor a képszélek kicsit kicsúsznak a card-ból */
 
 .card-content {
-  /* background-color: #e6dbd4; */
   background-color: #d6d3d1;
   display: flex;
   flex-direction: column;
@@ -85,24 +90,12 @@ img {
   width: 100%;
 }
 
-.card-content p {
-  flex: 1 0 auto;
-  margin: 0;
-  margin-bottom: 0.7rem;
-}
-
-.card-description {
-  padding-top: 30px;
-}
-.card-date {
-  color: rgba(52, 58, 64, 0.8);
-}
-
-.card-destination {
+.card-name {
   opacity: 0.8;
   background: rgba(251, 246, 243, 0.8);
   padding: 0.3rem;
-  width: 70%;
+  width: 100%;
+  max-width: 70%;
   min-height: min-content;
   margin: 0 auto -50px;
   box-shadow: 0 0 0 1px #fff inset;
@@ -113,27 +106,37 @@ img {
   text-align: center;
 }
 
+@media all and (min-width: 641px) and (max-width: 1200px) {
+  .card-name {
+    max-width: 90%;
+  }
+}
+
 .card-details {
-  /* background: #fbf6f3; */
   background-color: #e6dbd4;
   padding: 1rem;
   width: 100%;
-  height: min-content;
+  // height: min-content;
   margin: 0 auto;
+
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.card-details p {
-  display: block;
+.card-description {
+  padding-top: 30px;
 }
 
-.card-photos-videos {
+.card-features {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
 
-.card-photos {
-  padding-right: 1rem;
+.card-diff {
+  color: rgba(52, 58, 64, 0.8);
 }
 
 /* card méretarány  668px 418px 62%*/

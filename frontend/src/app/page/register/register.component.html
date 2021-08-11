@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card p-3">
+
+                <div class="card-header card-header-purplish">
+                    <h4 class="card-title"> REGISZTRÁCIÓ</h4>
+                    <p class="card-category">Itt adhatod meg a regisztrációhoz szükséges adataidat</p>
+                </div>
+
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                        <label>Vezetéknév:</label>
+                        <input type="text" class="form-control pl-3" name="lastName" formControlName="lastName">
+                        <div *ngIf="submitted && f.lastName.errors?.required" class="error">
+                            <p>A vezetéknév kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Keresztnév:</label>
+                        <input name="firstName" type="text" class="form-control pl-3" formControlName="firstName">
+                        <div *ngIf="submitted && f.firstName.errors?.required" class="error">
+                            <p>A keresztnév kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Felhasználónév:</label>
+                        <input name="nickName" type="text" class="form-control pl-3" formControlName="nickName">
+                        <div *ngIf="submitted && f.nickName.errors?.required" class="error">
+                            <p>A felhasználónév kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input name="email" type="email" class="form-control pl-3" formControlName="email">
+                        <div *ngIf="submitted && (f.email.errors?.email ||f.email.errors?.required)" class="error">
+                            <p>Az email mező kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jelszó:</label>
+                        <input name="password" type="password" class="form-control pl-3" formControlName="password">
+                        <div *ngIf="submitted && f.password.errors?.required" class="error">
+                            <p>A jelszó mező kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-success">Elküld</button>
+                    <div *ngIf="submitted && registerForm.invalid">
+                        <p class="error">A hibás mezők javítása szükséges!</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

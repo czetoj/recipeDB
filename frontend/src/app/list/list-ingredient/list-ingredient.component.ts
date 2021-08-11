@@ -75,6 +75,6 @@ export class ListIngredientComponent implements OnInit {
   }
 
   showWarning(): void {
-    this.toastr.warning('You have successfully deleted a ingredient!', 'Deleted', { timeOut: 4000 });
+    this.toastr.warning('Sikeresen töröltél egy hozzávalót!', 'Törölve', { timeOut: 4000 });
   }
 }

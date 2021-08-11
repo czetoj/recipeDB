@@ -15,16 +15,11 @@
     -moz-appearance: none;
     appearance: none;
 }
-.card .card-header-purplish:not(.card-header-icon):not(.card-header-text) {
-    background: linear-gradient(60deg, #9c27b0, #740288);
+.card .card-header-brownish:not(.card-header-icon):not(.card-header-text) {
+    background: linear-gradient(60deg, #815d3a, #582c02);
 }
-
-.color-purple {
-    color: #9c27b0;
-}
-
-.color-purplish {
-    color: #740288;
+.color-brownish {
+    color: #582c02;
 }
 
 .error-message {
@@ -93,4 +88,8 @@ label {
 .pluszjel {
     font-size: 3rem;
     padding-left: 1rem;
+}
+.error {
+    font-size: 80%;
+    color: red;
 }

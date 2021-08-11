@@ -1,35 +1,58 @@
 <div class="container">
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-md-8 offset-md-2 mx-auto">
             <div class="card p-3">
 
-                <div class="card-header card-header-purplish">
-                    <h4 class="card-title">Üzenet módosítása</h4>
-                    <p class="card-category">Itt módosíthatod az üzenet részleteit!</p>
+                <div *ngIf="new" class="card-header card-header-yellish">
+                    <h4 class="card-title"> Új üzenet felvitele</h4>
+                    <p class="card-category">Itt adhatod meg egy új üzenet adatait</p>
+                </div>
 
+                <div *ngIf="!new" class="card-header card-header-yellish">
+                    <h4 class="card-title">Üzenet módosítása</h4>
+                    <p class="card-category">Itt módosíthatod egy üzenet adatait</p>
                 </div>
 
                 <form [formGroup]="messageForm" (ngSubmit)="onSubmit(message)">
 
                     <div class="form-group">
                         <label for="email">Küldő email címe:</label>
-                        <input type="text" class="form-control pl-3" id="email" name="email" formControlName="email">
+                        <input type="text" class="form-control pl-3" id="email" name="email" formControlName="email"
+                            [ngClass]="{'is-invalid': submitted && messageForm.controls.email.errors}">
+                        <div *ngIf="submitted && messageForm.controls.email.errors" class="invalid-feedback">
+                            <div *ngIf="messageForm.controls.email.errors.required">Email cím megadása kötelező</div>
+                            <div *ngIf="messageForm.controls.email.errors.email">Az email-nek érvényes email formátumnak
+                                kell lennie</div>
+                        </div>
                     </div>
 
 
                     <div class="form-group">
                         <label>Küldő neve:</label>
-                        <input name="sender" type="text" class="form-control pl-3" formControlName="sender">
+                        <input name="sender" type="text" class="form-control pl-3" formControlName="sender"
+                            [ngClass]="{'is-invalid': submitted && messageForm.controls.sender.errors}">
+                        <div *ngIf="submitted && messageForm.controls.sender.errors" class="invalid-feedback">
+                            <div *ngIf="messageForm.controls.sender.errors.required">A küldő nevének megadása kötelező
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Üzenet tárgya:</label>
-                        <input name="subject" type="text" class="form-control pl-3" formControlName="subject">
+                        <input name="subject" type="text" class="form-control pl-3" formControlName="subject"
+                            [ngClass]="{'is-invalid': submitted && messageForm.controls.subject.errors}">
+                        <div *ngIf="submitted && messageForm.controls.subject.errors" class="invalid-feedback">
+                            <div *ngIf="messageForm.controls.subject.errors.required">Tárgy megadása kötelező</div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Üzenet tartalma:</label>
-                        <input name="message" type="text" class="form-control pl-3" formControlName="message">
+                        <input name="message" type="text" class="form-control pl-3" formControlName="message"
+                            [ngClass]="{'is-invalid': submitted && messageForm.controls.message.errors}">
+                        <div *ngIf="submitted && messageForm.controls.message.errors" class="invalid-feedback">
+                            <div *ngIf="messageForm.controls.message.errors.required">Tárgy megadása kötelező</div>
+                        </div>
                     </div>
 
                     <div class="form-group">

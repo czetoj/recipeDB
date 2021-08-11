@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SidebarComponent } from './page-components/sidebar/sidebar.component';
 import { NavbarComponent } from './page-components/navbar/navbar.component';
 import { FooterComponent } from './page-components/footer/footer.component';
@@ -38,6 +38,13 @@ import { ListUserComponent } from './list/list-user/list-user.component';
 import { EditUserComponent } from './edit/edit-user/edit-user.component';
 import { UserBarChartComponent } from './charts/user-bar-chart/user-bar-chart.component';
 import { RecipeBarChartComponent } from './charts/recipe-bar-chart/recipe-bar-chart.component';
+import { EditMenuComponent } from './edit/edit-menu/edit-menu.component';
+import { ListMenuComponent } from './list/list-menu/list-menu.component';
+import { ForbiddenComponent } from './page/forbidden/forbidden.component';
+import { LoginComponent } from './page/login/login.component';
+import { JwtInterceptorService } from './service/jwt-interceptor.service';
+import { RegisterComponent } from './page/register/register.component';
+import { ProfilComponent } from './page/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +73,12 @@ import { RecipeBarChartComponent } from './charts/recipe-bar-chart/recipe-bar-ch
     EditUserComponent,
     UserBarChartComponent,
     RecipeBarChartComponent,
+    EditMenuComponent,
+    ListMenuComponent,
+    ForbiddenComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfilComponent,
 
   ],
   imports: [
@@ -86,7 +99,9 @@ import { RecipeBarChartComponent } from './charts/recipe-bar-chart/recipe-bar-ch
     MatDividerModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

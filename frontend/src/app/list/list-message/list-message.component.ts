@@ -76,7 +76,7 @@ export class ListMessageComponent implements OnInit {
   }
 
   showWarning(): void {
-    this.toastr.warning('You have successfully deleted a message!', 'Deleted', { timeOut: 4000 });
+    this.toastr.warning('Sikeresen töröltél egy üzenetet!', 'Törölve', { timeOut: 4000 });
   }
 
 }

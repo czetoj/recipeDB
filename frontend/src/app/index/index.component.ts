@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Recipe } from '../model/recipe';
 import { RecipeService } from '../service/recipe.service';
 
@@ -10,9 +13,22 @@ import { RecipeService } from '../service/recipe.service';
 })
 export class IndexComponent implements OnInit {
 
-  recipeList$: BehaviorSubject<Recipe[]> = this.recipeService.list$;
+  // recipeList$: BehaviorSubject<Recipe[]> = this.recipeService.list$;
 
-  constructor(private recipeService: RecipeService) { }
+  categoryList$: Observable<Recipe[]> = this.ar.params.pipe(
+    switchMap(params => {
+      if (params.category) {
+        return this.recipeService.getCategory(params.category)
+      }
+      return this.categoryList$ = this.recipeService.list$
+    }
+    )
+  )
+
+  constructor(
+    private recipeService: RecipeService,
+    private ar: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.recipeService.getAll();

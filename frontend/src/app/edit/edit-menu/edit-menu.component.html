@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card p-3">
+
+                <div *ngIf="new" class="card-header card-header-greenish">
+                    <h4 class="card-title"> Új menü felvitele</h4>
+                    <p class="card-category">Itt adhatod meg egy új menü adatait</p>
+                </div>
+
+                <div *ngIf="!new" class="card-header card-header-greenish">
+                    <h4 class="card-title">Menü módosítása</h4>
+                    <p class="card-category">Itt módosíthatod a menü adatait</p>
+                </div>
+
+                <form [formGroup]="menuForm" (ngSubmit)="onSubmit(menu)">
+
+                    <div class="form-group">
+                        <label>Menü neve:</label>
+                        <input type="text" class="form-control pl-3" name="name" formControlName="name">
+                        <div *ngIf="submitted && f.name.errors?.required" class="error">
+                            <p>A menü nevének kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Leves:</label>
+                        <input name="soup" type="text" class="form-control pl-3" formControlName="soup">
+                        <div *ngIf="submitted && f.soup.errors?.required" class="error">
+                            <p>A leves mező kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Főétel:</label>
+                        <input name="main" type="text" class="form-control pl-3" formControlName="main">
+                        <div *ngIf="submitted && f.main.errors?.required" class="error">
+                            <p>A főétel mező kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Saláta:</label>
+                        <input name="salad" type="text" class="form-control pl-3" formControlName="salad">
+                        <div *ngIf="submitted && f.salad.errors?.required" class="error">
+                            <p>A saláta mező kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Desszert:</label>
+                        <input name="dessert" type="text" class="form-control pl-3" formControlName="dessert">
+                        <div *ngIf="submitted && f.dessert.errors?.required" class="error">
+                            <p>A desszert kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Az érvényesség hete (szám):</label>
+                        <input name="week" type="number" class="form-control pl-3" formControlName="week">
+                        <div *ngIf="submitted && (f.week.errors?.pattern ||f.week.errors?.required)" class="error">
+                            <p>A hét kitöltése kötelező!</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Elküld</button>
+                    <div *ngIf="submitted && menuForm.invalid">
+                        <p class="error">A hibás mezők javítása szükséges!</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

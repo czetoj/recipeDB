@@ -1,19 +1,26 @@
 <div class="container">
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-12 mx-auto">
             <div class="card p-3">
 
-                <div class="card-header card-header-purplish">
+                <div *ngIf="new" class="card-header card-header-purplish">
+                    <h4 class="card-title">Új recept felvitele</h4>
+                    <p class="card-category">Itt adhatod meg az új recepted részleteit!</p>
+                </div>
+                <div *ngIf="!new" class="card-header card-header-purplish">
                     <h4 class="card-title">Recept módosítása</h4>
                     <p class="card-category">Itt módosíthatod a recepted részleteit!</p>
-
                 </div>
 
-                <form [formGroup]="recipeForm" (ngSubmit)="onSubmit(recipe)">
+                <form [formGroup]="recipeForm" #ngForm="ngForm" (ngSubmit)="onSubmit(recipe)">
 
                     <div class="form-group">
                         <label for="name">Recept neve:</label>
-                        <input type="text" class="form-control pl-3" id="name" name="name" formControlName="name">
+                        <input type="text" class="form-control pl-3" id="name" name="name" formControlName="name"
+                            [ngClass]="{'is-invalid': submitted && f.name.errors}">
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">Recept nevének megadása kötelező</div>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -29,6 +36,9 @@
                             <option ngValue="Saláta">Saláta</option>
                             <option ngValue="Tészta">Tészta</option>
                         </select>
+                        <div *ngIf="submitted && recipeForm.controls.category.errors?.required" class="error">
+                            <p>Válassz a lehetőségek közül!</p>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -42,6 +52,9 @@
                             <mat-radio-button class="radio-right" value="nehéz">
                                 nehéz</mat-radio-button>
                         </mat-radio-group>
+                        <div *ngIf="submitted && recipeForm.controls.difficulty.errors?.required" class="error">
+                            <p>Válassz a lehetőségek közül!</p>
+                        </div>
                     </div>
 
                     <mat-divider></mat-divider>
@@ -57,6 +70,9 @@
                             <mat-radio-button class="example-radio-button" value="költséges">
                                 költséges</mat-radio-button>
                         </mat-radio-group>
+                        <div *ngIf="submitted && recipeForm.controls.price_friendly.errors?.required" class="error">
+                            <p>Válassz a lehetőségek közül!</p>
+                        </div>
                     </div>
 
                     <mat-divider></mat-divider>
@@ -66,22 +82,30 @@
                             <div class="form-group">
                                 <label>Előkészítési idő (perc):</label>
                                 <input name="time_pre" type="number" class="form-control pl-3"
-                                    formControlName="time_pre">
-                                <div [hidden]="recipeForm.controls.time_pre?.valid || recipeForm.controls.time_pre?.pristine "
-                                    class="error-message">
-                                    Előkészítési idő csak szám lehet!
+                                    formControlName="time_pre"
+                                    [ngClass]="{'is-invalid': submitted && f.time_pre.errors}">
+                                <div *ngIf="submitted && f.time_pre.errors" class="invalid-feedback">
+                                    <div *ngIf="f.time_pre.errors.required">Az előkészítési idő
+                                        megadása kötelező</div>
+                                    <div *ngIf="f.time_pre.errors?.pattern">Az előkészítési idő
+                                        megadása kötelező</div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col">
                             <div class="form-group">
                                 <label>Főzési / sütési idő (perc):</label>
                                 <input name="time_cooking" type="number" class="form-control pl-3"
-                                    formControlName="time_cooking">
+                                    formControlName="time_cooking"
+                                    [ngClass]="{'is-invalid': submitted && f.time_cooking.errors}">
+                                <div *ngIf="submitted && f.time_cooking.errors" class="invalid-feedback">
+                                    <div *ngIf="f.time_cooking.errors?.required">A főzési/sütési idő
+                                        megadása kötelező</div>
+                                    <div *ngIf="f.time_cooking.errors?.pattern">A főzési/sütési idő
+                                        megadása kötelező</div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="form-group">
@@ -92,10 +116,6 @@
                     <div class="form-group">
                         <label>Index (nyitóoldalon a recept sorszáma):</label>
                         <input name="index" type="number" class="form-control pl-3" formControlName="index">
-                        <div [hidden]="recipeForm.controls.index?.valid || recipeForm.controls.index?.pristine "
-                            class="error-message">
-                            Az Index csak számot tartalmazhat!
-                        </div>
                     </div>
 
                     <div class="row">
@@ -103,10 +123,6 @@
                             <div class="form-group">
                                 <label>A recept kalória értéke:</label>
                                 <input name="calory" type="number" class="form-control pl-3" formControlName="calory">
-                                <div [hidden]="recipeForm.controls.calory?.valid || recipeForm.controls.calory?.pristine "
-                                    class="error-message">
-                                    A kalória csak számot tartalmazhat!
-                                </div>
                             </div>
                         </div>
 
@@ -114,10 +130,6 @@
                             <div class="form-group">
                                 <label>Hány adag készíthető el a receptből?</label>
                                 <input name="portion" type="number" class="form-control pl-3" formControlName="portion">
-                                <div [hidden]="recipeForm.controls.portion?.valid || recipeForm.controls.portion?.pristine "
-                                    class="error-message">
-                                    Az adag csak szám lehet!
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -127,7 +139,6 @@
                         <input name="story" type="text" class="form-control pl-3" formControlName="story"
                             placeholder="Kedvicsináló mondat(ok) a recept elkészítéséhez.">
                     </div>
-
 
                     <mat-divider></mat-divider>
 
@@ -148,6 +159,7 @@
                             <div class="col-6">
                                 <label>Hozzávaló:</label>
                                 <input type="text" formControlName="hozzavalo" class="form-control">
+
                             </div>
 
                             <div class="col-2">
@@ -155,6 +167,9 @@
                                         class="material-icons">delete</span></button>
                             </div>
                         </div>
+                    </div>
+                    <div>
+
                     </div>
 
                     <div class="d-flex justify-content-center"><button type="button" (click)="addIngredient()"
@@ -188,7 +203,14 @@
                             (change)="onFileChange($event)">
                     </div>
 
-                    <button type="submit" class="btn btn-success">Elküld</button>
+                    <div>
+                        <button type="submit" class="btn btn-success">Elküld</button>
+                    </div>
+
+                    <div *ngIf="submitted && recipeForm.invalid">
+                        <p class="error">A hibás mezők javítása szükséges!</p>
+                    </div>
+
                 </form>
             </div>
         </div>

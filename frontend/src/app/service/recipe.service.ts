@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Recipe } from 'src/app/model/recipe';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
 export class RecipeService {
 
   list$: BehaviorSubject<Recipe[]> = new BehaviorSubject<Recipe[]>([]);
@@ -28,6 +30,14 @@ export class RecipeService {
     }
 
     return of(new Recipe());
+  }
+
+  getCategory(category: string): Observable<Recipe[]> {
+    const recipes: Recipe[] | undefined = this.list$.value.filter(item => item.category === category);
+    if (recipes) {
+      return of(recipes)
+    }
+    return of([])
   }
 
   update(recipe: Recipe): Observable<Recipe> {

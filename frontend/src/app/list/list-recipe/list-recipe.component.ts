@@ -76,6 +76,6 @@ export class ListRecipeComponent implements OnInit {
   }
 
   showWarning(): void {
-    this.toastr.warning('You have successfully deleted a recipe!', 'Deleted', { timeOut: 4000 });
+    this.toastr.warning('Sikeresen töröltél egy receptet!', 'Törölve', { timeOut: 4000 });
   }
 }
