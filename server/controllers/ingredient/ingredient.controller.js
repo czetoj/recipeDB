@@ -25,6 +25,9 @@ exports.postIngredient = (req, res, next) => {
         .then(data => {
             res.status(201);
             res.json(data);
+        })
+        .catch((err) => {
+            return next(new createError.BadRequest(err));
         });
 }
 

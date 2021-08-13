@@ -11,7 +11,7 @@
 
         <div class="collapse navbar-collapse justify-content-between">
             <div class="etlap d-flex align-items-center">
-                <ul class="navbar-nav d-flex">
+                <ul class="navbar-nav d-flex snip1217">
 
                     <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <a class="nav-link" routerLink="/index/Leves">
@@ -36,33 +36,37 @@
 
                     <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <a class="nav-link" routerLink="/index/Saláta">
-                            <img class="menu-img" src="../../../assets/img/svg/menu_salad.svg" alt="Saláta">Saláta
+                            <img class="menu-img" src="../../../assets/img/svg/menu_salad.svg" alt="Saláta">
+                            <span class="menu-name">Saláta</span>
                         </a>
                     </li>
 
                     <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <a class="nav-link" routerLink="/index/Főzelék">
-                            <img class="menu-img" src="../../../assets/img/svg/menu_sauce.svg" alt="Főzelék">Főzelék
+                            <img class="menu-img" src="../../../assets/img/svg/menu_sauce.svg" alt="Főzelék">
+                            <span class="menu-name">Főzelék</span>
                         </a>
                     </li>
 
                     <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <a class="nav-link" routerLink="/index/Tészta">
-                            <img class="menu-img" src="../../../assets/img/svg/menu_pasta.svg" alt="Tészta">Tészta
+                            <img class="menu-img" src="../../../assets/img/svg/menu_pasta.svg" alt="Tészta">
+                            <span class="menu-name">Tészta</span>
                         </a>
                     </li>
 
 
                     <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <a class="nav-link" routerLink="/index/Desszert">
-                            <img class="menu-img" src="../../../assets/img/svg/menu_dessert.svg" alt="Desszert">Desszert
+                            <img class="menu-img" src="../../../assets/img/svg/menu_dessert.svg" alt="Desszert">
+                            <span class="menu-name">Desszert</span>
                         </a>
                     </li>
 
                 </ul>
             </div>
 
-            <div class="d-flex">
+            <div class="d-flex nav-auth">
                 <ul class="d-flex flex-row align-items-center mb-0">
                     <li *ngIf="user" class="nav-item">
                         <span> Üdvözöljük {{user.firstName}}!</span>

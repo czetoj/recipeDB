@@ -16,7 +16,7 @@ img {
 }
 
 ol {
-    max-width: 600px;
+    max-width: 900px;
     counter-reset: my-awesome-counter;
     list-style: none;
     padding-left: 40px;
@@ -73,4 +73,10 @@ hr.style16:after {
     padding: 0.5rem;
     background: #f0f0f0;
     color: #9c27b0;
+}
+
+.img-fluid {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

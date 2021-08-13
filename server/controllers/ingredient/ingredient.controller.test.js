@@ -1,17 +1,18 @@
 const { mockRequest, mockResponse } = require('jest-mock-req-res')
 const createError = require('http-errors');
+// const Ingredient = require('../../models/ingredient.model')
 
 const ingredientController = require('./ingredient.controller');
 const ingredientService = require('./ingredient.service');
 
 jest.mock('./ingredient.service');
 
-describe("ingredient controller", () => {
-    const mockData = [{ "_id": 1, "name": "mák", "unit": "gr", "calory": 10 },
-    { "_id": 2, "name": "dió", "unit": "gr", "calory": 20 },
-    { "_id": 3, "name": "mogyoró", "unit": "gr", "calory": 30 },
-    { "_id": 4, "name": "alma", "unit": "db", "calory": 40 },
-    { "_id": 5, "name": "liszt", "unit": "gr", "calory": 50 }];
+describe("Ingredient controller", () => {
+    const mockData = [{ _id: "sd", name: "mák", name: "gr", calory: 10 },
+    { _id: "kll", name: "dió", name: "gr", calory: 20 },
+    { _id: "kk", name: "mogyoró", name: "gr", calory: 30 },
+    { _id: "jkk", name: "alma", name: "db", calory: 40 },
+    { _id: "hdjj", name: "liszt", name: "gr", calory: 50 }];
 
     let response;
     const nextFunction = jest.fn();
@@ -21,7 +22,7 @@ describe("ingredient controller", () => {
         response = mockResponse();
     });
 
-    test("find all", () => {
+    test("Find all ingredients", () => {
 
         const request = mockRequest();
 
@@ -30,5 +31,29 @@ describe("ingredient controller", () => {
                 expect(ingredientService.getAll);
                 expect(response.json)
             })
+    });
+
+    test('Create a new ingredient', () => {
+        const NEW_ING = {
+            name: 'Lencse',
+            unit: 'gr',
+            calory: 42,
+        };
+
+        const request = mockRequest({
+            method: 'POST',
+            body: {
+                name: "Lencse",
+                unit: "gr",
+                calory: 42,
+            },
+        });
+
+        return ingredientController.postIngredient(request, response, nextFunction)
+            .then(() => {
+                expect(ingredientService.create).toBeCalledWith(NEW_ING);
+                expect(response.json).toBeCalledWith(NEW_ING);
+            })
+
     });
 });

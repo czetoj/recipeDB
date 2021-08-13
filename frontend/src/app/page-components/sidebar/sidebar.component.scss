@@ -101,7 +101,6 @@ ul li {
 .mobil-auth {
     display: flex;
     justify-content: center;
-    max-width: 90%;
 }
 
 .mobil-auth a i {
@@ -115,7 +114,5 @@ ul li {
 @media (min-width: 992px) {
     .mobil-auth {
         display: none;
-        justify-content: center;
-        max-width: 70%;
     }
 }
