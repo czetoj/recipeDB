@@ -19,6 +19,7 @@ import { AuthGuardService } from './service/auth-guard.service';
 import { RoleGuardService } from './service/role-guard.service';
 import { RegisterComponent } from './page/register/register.component';
 import { ProfilComponent } from './page/profil/profil.component';
+import { MenuajanloComponent } from './page/menuajanlo/menuajanlo.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'forbidden',
     component: ForbiddenComponent
+  },
+  {
+    path: 'menuajanlo',
+    component: MenuajanloComponent
   },
   {
     path: 'register',

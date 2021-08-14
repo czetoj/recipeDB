@@ -12,6 +12,7 @@ img {
   min-width: 100%;
   object-fit: cover;
   vertical-align: bottom;
+  border-radius: 3px 3px 0 0;
 }
 
 /*Flex items*/
@@ -31,32 +32,19 @@ img {
   outline: 1px dashed rgba(251, 246, 243, 0.8);
   outline-offset: -1.5rem;
 }
-/* mobil nézet */
 
 /* tablet nézet */
-@media all and (min-width: 40em) {
+@media all and (min-width: 640px) {
   .card-item {
     width: 50%;
-  }
-  .card-features {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
 }
 /* tablet nézet */
 
 /* desktop nézet */
-@media all and (min-width: 60em) {
+@media all and (min-width: 960px) {
   .card-item {
     width: 33.33%;
-  }
-}
-
-@media all and (min-width: 1200px) {
-  .card-features {
-    flex-direction: row;
   }
 }
 /* desktop nézet */
@@ -65,6 +53,33 @@ img {
   font-size: 1.3rem;
   font-weight: bold;
   display: block;
+}
+
+.card-features {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  color: rgba(52, 58, 64, 0.8);
+  flex: 1;
+  align-items: flex-end;
+}
+
+@media all and (min-width: 640px) {
+  .card-features {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  .card-features {
+    flex-direction: row;
+    justify-content: space-around;
+    flex: 1;
+    align-items: flex-end;
+  }
 }
 
 .card-country {
@@ -87,6 +102,7 @@ img {
   display: flex;
   flex-direction: column;
   padding: 1em;
+  border-radius: 3px 3px 0 0;
   width: 100%;
 }
 
@@ -127,22 +143,14 @@ img {
 
 .card-description {
   padding-top: 30px;
-}
-
-.card-features {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.card-diff {
+  text-align: center;
   color: rgba(52, 58, 64, 0.8);
 }
 
 /* card méretarány  668px 418px 62%*/
 
 .card-button {
-  background-color: rgba(52, 58, 64, 0.5);
+  background-color: rgba(52, 58, 64, 0.8);
   border: 0;
   color: white;
   padding: 0.7rem;
@@ -154,5 +162,5 @@ img {
 }
 
 .card-button:hover {
-  background-color: rgba(52, 58, 64, 0.8);
+  background-color: rgba(52, 58, 64);
 }

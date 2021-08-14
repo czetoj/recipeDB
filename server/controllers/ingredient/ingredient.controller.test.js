@@ -33,27 +33,43 @@ describe("Ingredient controller", () => {
             })
     });
 
-    test('Create a new ingredient', () => {
-        const NEW_ING = {
-            name: 'Lencse',
-            unit: 'gr',
-            calory: 42,
-        };
+    // test('Create a new ingredient', () => {
+    //     const NEW_ING = {
+    //         name: 'Lencse',
+    //         unit: 'gr',
+    //         calory: 42,
+    //     };
+
+    //     const request = mockRequest({
+    //         method: 'POST',
+    //         body: {
+    //             name: "Lencse",
+    //             unit: "gr",
+    //             calory: 42,
+    //         },
+    //     });
+
+    //     return ingredientController.postIngredient(request, response, nextFunction)
+    //         .then(() => {
+    //             expect(ingredientService.create).toBeCalledWith(NEW_ING);
+    //             expect(response.json).toBeCalledWith(NEW_ING);
+    //         })
+    // });
+
+    test("Delete ingredients", () => {
+
+        const ID = "ggghhgd"
 
         const request = mockRequest({
-            method: 'POST',
-            body: {
-                name: "Lencse",
-                unit: "gr",
-                calory: 42,
+            params: {
+                id: ID,
             },
         });
 
-        return ingredientController.postIngredient(request, response, nextFunction)
+        return ingredientController.deleteIngredient(request, response, nextFunction)
             .then(() => {
-                expect(ingredientService.create).toBeCalledWith(NEW_ING);
-                expect(response.json).toBeCalledWith(NEW_ING);
+                expect(ingredientService.delete);
+                expect(response.json)
             })
-
     });
 });

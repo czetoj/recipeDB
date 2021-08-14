@@ -45,6 +45,7 @@ import { LoginComponent } from './page/login/login.component';
 import { JwtInterceptorService } from './service/jwt-interceptor.service';
 import { RegisterComponent } from './page/register/register.component';
 import { ProfilComponent } from './page/profil/profil.component';
+import { MenuajanloComponent } from './page/menuajanlo/menuajanlo.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { ProfilComponent } from './page/profil/profil.component';
     LoginComponent,
     RegisterComponent,
     ProfilComponent,
+    MenuajanloComponent,
 
   ],
   imports: [

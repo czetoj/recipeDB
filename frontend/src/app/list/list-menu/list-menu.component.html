@@ -20,12 +20,12 @@
                     <!-- Filter component -->
                     <div class="col-12 mx-auto row py-2 product-search">
                         <select [(ngModel)]="filterKey"
-                            class="options-control form-control col-1 ml-auto py-3 custom-select">
+                            class="options-control form-control col-md-2 ml-auto py-3 custom-select">
                             <option *ngFor="let prop of menuProperties" [value]="prop">{{prop}}</option>
                         </select>
-                        <input [(ngModel)]="phrase" class="form-control mx-1 col-4 py-3" type="text"
+                        <input [(ngModel)]="phrase" class="form-control mx-1 col-md-4 py-3" type="text"
                             placeholder="Search">
-                        <button class="btn bg-darkgrey col-1 mr-auto" type="submit"><span
+                        <button class="btn bg-darkgrey col-md-1 mr-auto" type="submit"><span
                                 class="material-icons">search</span></button>
                     </div>
                     <!-- Filter component -->

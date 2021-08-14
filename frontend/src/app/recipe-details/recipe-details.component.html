@@ -1,5 +1,9 @@
 <main class="mt-2 pt-2">
 
+    <div class="design-img">
+        <img src="../../../assets/img/veg-mix.jpg" alt="">
+    </div>
+
     <!--Grid row-->
     <div class="row d-flex justify-content-center wow fadeIn">
 
@@ -44,9 +48,12 @@
                     <p class="lead font-weight-bold">Hozzávalók</p>
 
                     <div class="row" *ngFor="let item of recipe.ingredients; let i=index">
-                        <div class="col-1"><span class="ing-q">{{recipe.ingredients_quantity[i]}}</span></div>
-                        <div class="col-2"><span class="ing-u">{{recipe.ingredients_unit[i]}}</span></div>
-                        <div class="col-auto"><span class="ing-i">{{recipe.ingredients[i]}}</span></div>
+                        <div class="col-2"><span class="ing-q">{{recipe.ingredients_quantity[i]}}</span></div>
+                        <div class="col-2"><span class="ing-u">{{recipe.ingredients_unit[i]}}</span>
+                        </div>
+                        <div class="col-8"><span class="ing-i">{{recipe.ingredients[i]}}</span>
+                        </div>
+
                     </div>
 
                 </div>

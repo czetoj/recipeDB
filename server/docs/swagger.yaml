@@ -146,6 +146,450 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /ingredients:
+    get:
+      description: A hozzávalók listája
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A hozzávalók listája sikeresen megjött!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingredient'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+    post:
+      description: Egy hozzávalóló létrehozása
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ingredient'
+      responses:
+        '201':
+          description: A hozzávaló sikeresen létrejött!
+          content:
+            application/json:
+              schema:
+                type: json
+                items:
+                $ref: '#/components/schemas/Ingredient'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /ingredients/{id}:
+    patch:
+      description: Módosít egy hozzávalót
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: A hozzávaló sikeresen módosításra került
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      description: Töröl egy hozzávalót
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: A hozzávaló sikeresen törlésre került
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /messages:
+    get:
+      description: Az üzenetek listája
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Az üzenetek listája sikeresen megjött!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+    post:
+      description: Egy üzenet létrehozása
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '201':
+          description: Az üzenet sikeresen létrejött!
+          content:
+            application/json:
+              schema:
+                type: json
+                items:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /messages/{id}:
+    patch:
+      description: Módosít egy üzenetet
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Az üzenet sikeresen módosításra került
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      description: Töröl egy üzenetet
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Az üzenet sikeresen törlésre került
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /menus:
+    get:
+      description: A menük listája
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A menük listája sikeresen megjött!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+    post:
+      description: Egy menü létrehozása
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+      responses:
+        '201':
+          description: A menü sikeresen létrejött!
+          content:
+            application/json:
+              schema:
+                type: json
+                items:
+                $ref: '#/components/schemas/Menu'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /menus/{id}:
+    patch:
+      description: Módosít egy menüt
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: A menü sikeresen módosításra került
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      description: Töröl egy menüt
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: A felhasználó sikeresen törlésre került
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /recipes:
+    get:
+      description: A receptekk listája
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A receptek listája sikeresen megjött!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+    post:
+      description: Egy recept létrehozása
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recipe'
+      responses:
+        '201':
+          description: A recept sikeresen létrejött!
+          content:
+            application/json:
+              schema:
+                type: json
+                items:
+                $ref: '#/components/schemas/Recipe'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /recipes/{id}:
+    patch:
+      description: Módosít egy receptet
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: A recept sikeresen módosításra került
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      description: Töröl egy receptet
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: A recept sikeresen törlésre került
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -178,6 +622,96 @@ components:
           type: number
         start:
           type: date
+    Ingredient:
+      type: object
+      required:
+        - name
+        - unit
+        - calory
+      properties:
+        name:
+          type: string
+        unit:
+          type: string
+        calory:
+          type: number
+    Menu:
+      type: object
+      required:
+        - name
+        - soup
+        - main
+        - salad
+        - dessert
+        - week
+      properties:
+        name:
+          type: string
+        soup:
+          type: string
+        main:
+          type: string
+        salad:
+          type: string
+        dessert:
+          type: string
+        week:
+          type: number
+    Recipe:
+      type: object
+      required:
+        - name
+        - category
+        - time_need
+        - difficulty
+        - price_friendly
+        - time_pre
+        - time_cooking
+        - degree
+        - index
+        - calory
+        - description
+        - ingredients
+        - ingredients_quantity
+        - ingredients_unit
+        - img
+        - story
+        - portion
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        time_need:
+          type: number
+        difficulty:
+          type: string
+        price_friendly:
+          type: string
+        time_pre:
+          type: number
+        time_cooking:
+          type: number
+        degree:
+          type: number
+        index:
+          type: number
+        calory:
+          type: number
+        description:
+          type: array
+        ingredients:
+          type: array
+        ingredients_quantity:
+          type: array
+        ingredients_unit:
+          type: array
+        img:
+          type: string
+        story:
+          type: string
+        portion:
+          type: number
     Message:
       type: object
       required:

@@ -1,5 +1,5 @@
 {
-  "name": "receptdb-server",
+  "name": "receptdb",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -19,7 +19,9 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "node app.js"
+    "start": "node app.js",
+    "docker:build": "docker build -t receptdb:latest .",
+    "docker-compose:up": "docker-compose up"
   },
   "keywords": [],
   "author": "",

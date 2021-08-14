@@ -116,3 +116,7 @@ ul li {
         display: none;
     }
 }
+
+.sidebar .sidebar-wrapper {
+    height: calc(100vh - 175px);
+}
