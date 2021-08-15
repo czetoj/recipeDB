@@ -36,11 +36,11 @@ exports.getUser = async (req, res, next) => {
 exports.postUser = (req, res, next) => {
     const { firstName, lastName, nickName, email, password, countOfRecipes, start, role } = req.body;
 
-    // if (!lastName || !firstName || !vaccine) {
-    //     return next(
-    //         new createError.BadRequest("Missing properties!")
-    //     );
-    // }
+    if (!email || !password) {
+        return next(
+            new createError.BadRequest("Missing properties!")
+        );
+    }
 
     const newUser = new User({
         firstName: firstName,

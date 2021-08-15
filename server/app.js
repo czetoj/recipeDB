@@ -5,6 +5,7 @@ const ingredientRoute = require('./controllers/ingredient/ingredient.route');
 const messageRoute = require('./controllers/message/message.route');
 const menuRoute = require('./controllers/menu/menu.route');
 const authHandler = require('./auth/authHandler');
+const authenticateJwt = require('./auth/authenticate')
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const createError = require('http-errors');

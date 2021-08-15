@@ -13,11 +13,11 @@ exports.getRecipes = async (req, res) => {
 
 exports.postRecipe = (req, res, next) => {
     const { name, category, time_need, difficulty, price_friendly, time_pre, time_cooking, degree, index, calory, description, ingredients, ingredients_quantity, ingredients_unit, img, story, portion } = req.body;
-    // if (!lastName || !firstName || !vaccine) {
-    //     return next(
-    //         new createError.BadRequest("Missing properties!")
-    //     );
-    // }
+    if (!name || !category || !difficulty || !price_friendly || !description || !ingredients || !portion) {
+        return next(
+            new createError.BadRequest("Missing properties!")
+        );
+    }
 
     const newRecipe = new Recipe({
         name: name,
@@ -43,7 +43,14 @@ exports.postRecipe = (req, res, next) => {
         .then(data => {
             res.status(201);
             res.json(data);
+        })
+        .catch((err) => {
+            return next(new createError.BadRequest(err));
         });
+}
+
+exports.upload = (req, res, next) => {
+    console.log(req.files)
 }
 
 exports.patchRecipe = (req, res, next) => {

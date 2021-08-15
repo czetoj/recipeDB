@@ -23,35 +23,52 @@
                         </div>
                     </div>
 
+
                     <div class="form-group">
-                        <label>Leves:</label>
-                        <input name="soup" type="text" class="form-control pl-3" formControlName="soup">
-                        <div *ngIf="submitted && f.soup.errors?.required" class="error">
-                            <p>A leves mező kitöltése kötelező!</p>
+                        <label>Leves: </label>
+                        <select name="soup" formControlName="soup" class="custom-select mb-2">
+                            <option value="" disabled>Válassz kategóriát</option>
+                            <option *ngFor="let recipe of soup$ | async" [ngValue]="recipe.name">{{recipe.name}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && menuForm.controls.soup.errors?.required" class="error">
+                            <p>Válassz a lehetőségek közül!</p>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label> Főétel:</label>
-                        <input name="main" type="text" class="form-control pl-3" formControlName="main">
-                        <div *ngIf="submitted && f.main.errors?.required" class="error">
-                            <p>A főétel mező kitöltése kötelező!</p>
+                        <label>Főétel: </label>
+                        <select name="main" formControlName="main" class="custom-select mb-2">
+                            <option value="" disabled>Válassz kategóriát</option>
+                            <option *ngFor="let recipe of main$ | async" [ngValue]="recipe.name">{{recipe.name}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && menuForm.controls.main.errors?.required" class="error">
+                            <p>Válassz a lehetőségek közül!</p>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Saláta:</label>
-                        <input name="salad" type="text" class="form-control pl-3" formControlName="salad">
-                        <div *ngIf="submitted && f.salad.errors?.required" class="error">
-                            <p>A saláta mező kitöltése kötelező!</p>
+                        <label>Saláta: </label>
+                        <select name="salad" formControlName="salad" class="custom-select mb-2">
+                            <option value="" disabled>Válassz kategóriát</option>
+                            <option *ngFor="let recipe of salad$ | async" [ngValue]="recipe.name">{{recipe.name}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && menuForm.controls.salad.errors?.required" class="error">
+                            <p>Válassz a lehetőségek közül!</p>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Desszert:</label>
-                        <input name="dessert" type="text" class="form-control pl-3" formControlName="dessert">
-                        <div *ngIf="submitted && f.dessert.errors?.required" class="error">
-                            <p>A desszert kitöltése kötelező!</p>
+                        <label>Desszert: </label>
+                        <select name="dessert" formControlName="dessert" class="custom-select mb-2">
+                            <option value="" disabled>Válassz kategóriát</option>
+                            <option *ngFor="let recipe of dessert$ | async" [ngValue]="recipe.name">{{recipe.name}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && menuForm.controls.dessert.errors?.required" class="error">
+                            <p>Válassz a lehetőségek közül!</p>
                         </div>
                     </div>
 

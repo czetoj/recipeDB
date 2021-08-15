@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         }
       },
       err => {
-        this.serverError = err.error
+        this.serverError = 'Hibás felhasználónév vagy jelszó'
         const to = setTimeout(() => {
           clearTimeout(to)
           this.serverError = ''

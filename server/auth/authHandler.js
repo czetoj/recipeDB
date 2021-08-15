@@ -6,23 +6,26 @@ const refreshTokens = []
 module.exports.login = async (req, res) => {
     const { email, password } = req.body
 
-    const user = await User.find(
-        {
-            email: email,
-            password: password
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            throw new Error('User not found!');
         }
-    )
 
-    if (user) {
+        const verified = await user.verifyPassword(password);
+        if (!verified) {
+            throw new Error('Incorrect Credentials!');
+        }
+
         const accessToken = jwt.sign({
-            username: user.username,
+            email: user.email,
             role: user.role
         }, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: process.env.TOKEN_EXPIRY
         })
 
         const refreshToken = jwt.sign({
-            username: user.username,
+            email: user.email,
             role: user.role
         }, process.env.REFRESH_TOKEN_SECRET)
 
@@ -30,9 +33,11 @@ module.exports.login = async (req, res) => {
 
         res.json({
             accessToken,
-            refreshToken
+            refreshToken,
+            user
         })
-    } else {
+
+    } catch (e) {
         res.send('Username or password is incorrect')
     }
 }

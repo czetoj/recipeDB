@@ -13,6 +13,7 @@ img {
   object-fit: cover;
   vertical-align: bottom;
   border-radius: 3px 3px 0 0;
+  cursor: pointer;
 }
 
 /*Flex items*/
@@ -150,7 +151,7 @@ img {
 /* card méretarány  668px 418px 62%*/
 
 .card-button {
-  background-color: rgba(52, 58, 64, 0.8);
+  background-color: rgba(52, 58, 64, 0.5);
   border: 0;
   color: white;
   padding: 0.7rem;
@@ -162,5 +163,5 @@ img {
 }
 
 .card-button:hover {
-  background-color: rgba(52, 58, 64);
+  background-color: rgba(52, 58, 64, 0.8);
 }

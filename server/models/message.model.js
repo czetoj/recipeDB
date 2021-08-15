@@ -1,11 +1,26 @@
 const mongoose = require('mongoose');
 
 const messageSchema = mongoose.Schema({
-    email: String,
-    sender: String,
-    subject: String,
-    message: String,
-    status: String,
+    email: {
+        type: String,
+        required: true
+    },
+    sender: {
+        type: String,
+        required: true
+    },
+    subject: {
+        type: String,
+        required: true
+    },
+    message: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
+        default: 'függő'
+    }
 }, {
     timestamps: true
 });

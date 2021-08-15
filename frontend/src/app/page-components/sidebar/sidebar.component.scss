@@ -103,12 +103,21 @@ ul li {
     justify-content: center;
 }
 
-.mobil-auth a i {
+.mobil-auth ul {
+    padding: 0;
+    margin: 0;
+}
+
+.mobil-auth ul li a {
     color: rgb(85, 85, 85);
 }
 
-.mobil-auth a:hover {
+.mobil-auth ul li a:hover {
     cursor: pointer;
+    color: white;
+    background-color: #475a63;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
 }
 
 @media (min-width: 992px) {
@@ -119,4 +128,8 @@ ul li {
 
 .sidebar .sidebar-wrapper {
     height: calc(100vh - 175px);
+}
+
+.sidebar .sidebar-wrapper .udv-name {
+    font-weight: bold;
 }

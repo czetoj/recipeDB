@@ -9,11 +9,11 @@ exports.getMenus = async (req, res) => {
 
 exports.postMenu = (req, res, next) => {
     const { name, soup, main, salad, dessert, week } = req.body;
-    // if (!lastName || !firstName || !vaccine) {
-    //     return next(
-    //         new createError.BadRequest("Missing properties!")
-    //     );
-    // }
+    if (!name || !soup || !main || !salad || !dessert || !week) {
+        return next(
+            new createError.BadRequest("Missing properties!")
+        );
+    }
 
     const newMenu = new Menu({
         name: name,
@@ -28,6 +28,9 @@ exports.postMenu = (req, res, next) => {
         .then(data => {
             res.status(201);
             res.json(data);
+        })
+        .catch((err) => {
+            return next(new createError.BadRequest(err));
         });
 }
 

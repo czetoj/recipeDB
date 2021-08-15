@@ -1,7 +1,5 @@
 <div class="container">
 
-
-
     <div class="row">
         <div class="col-12 mx-auto">
             <div class="card p-3">
@@ -99,14 +97,7 @@
                             <div class="form-group">
                                 <label>Főzési / sütési idő (perc):</label>
                                 <input name="time_cooking" type="number" class="form-control pl-3"
-                                    formControlName="time_cooking"
-                                    [ngClass]="{'is-invalid': submitted && f.time_cooking.errors}">
-                                <div *ngIf="submitted && f.time_cooking.errors" class="invalid-feedback">
-                                    <div *ngIf="f.time_cooking.errors?.required">A főzési/sütési idő
-                                        megadása kötelező</div>
-                                    <div *ngIf="f.time_cooking.errors?.pattern">A főzési/sütési idő
-                                        megadása kötelező</div>
-                                </div>
+                                    formControlName="time_cooking">
                             </div>
                         </div>
                     </div>
@@ -199,14 +190,19 @@
                             class="btn btn-primary">Lépések hozzáadása
                             +</button></div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="kepgomb" for="file">Receptkép feltöltés - ide kattintva töltsd fel a képet
                             <span class="pluszjel">+</span> </label>
                         <input formControlName="file" type="file" id="file" class="form-control"
                             (change)="onFileChange($event)">
+                    </div> -->
+
+                    <div class="form-group">
+                        <label>Receptkép neve (fájl kiterjesztés nélkül):</label>
+                        <input name="img" type="text" class="form-control pl-3" formControlName="img">
                     </div>
 
-                    <div>
+                    <div class="mt-5">
                         <button type="submit" class="btn btn-success">Elküld</button>
                     </div>
 

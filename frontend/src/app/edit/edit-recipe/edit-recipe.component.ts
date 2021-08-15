@@ -37,13 +37,13 @@ export class EditRecipeComponent implements OnInit {
       difficulty: ['', Validators.required],
       price_friendly: ['', Validators.required],
       time_pre: ['', [Validators.required, Validators.pattern("^([1-9][0-9]{0,2}|1000)$")]],
-      time_cooking: ['', [Validators.required, Validators.pattern("^([1-9][0-9]{0,2}|1000)$")]],
+      time_cooking: ['', [Validators.pattern("^([0-9][0-9]{0,2}|1000)$")]],
       degree: [''],
       index: [''],
       calory: [''],
       portion: [''],
       story: [''],
-      file: [''],
+      img: [''],
       fileSource: [''],
       ingrArray: this.fb.array([]),
       stepsArray: this.fb.array([])
@@ -64,6 +64,7 @@ export class EditRecipeComponent implements OnInit {
       this.recipeForm.get('calory')?.setValue(this.recipe.calory)
       this.recipeForm.get('portion')?.setValue(this.recipe.portion)
       this.recipeForm.get('story')?.setValue(this.recipe.story)
+      this.recipeForm.get('img')?.setValue(this.recipe.img)
       for (let i = 0; i < this.recipe.ingredients.length - 1; i++) {
         this.ingrArray().push(this.newIngrGroup())
       }
@@ -80,7 +81,6 @@ export class EditRecipeComponent implements OnInit {
       for (let i = 0; i < this.recipe.description.length; i++) {
         stepControlArray.controls[i].get('lepes')?.setValue(this.recipe.description[i]);
       }
-      console.log(this.recipeForm)
     })
   }
 
@@ -122,7 +122,7 @@ export class EditRecipeComponent implements OnInit {
   }
 
   changeCategory(e: any) {
-    this.recipeForm.value['category'].setValue(e.target.value, {
+    this.recipeForm.get('category')?.setValue(e.target.value, {
       onlySelf: true
     })
   }
@@ -130,6 +130,7 @@ export class EditRecipeComponent implements OnInit {
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+
       this.recipeForm.patchValue({
         fileSource: file
       });
@@ -152,7 +153,6 @@ export class EditRecipeComponent implements OnInit {
       return
     }
 
-    // this.recipe.ingredients[0] = this.productForm.value['ingrArray'][0]['hozzavalo']
     this.recipe.name = this.recipeForm.value['name']
     this.recipe.category = this.recipeForm.value['category']
     this.recipe.difficulty = this.recipeForm.value['difficulty']
@@ -164,6 +164,7 @@ export class EditRecipeComponent implements OnInit {
     this.recipe.calory = this.recipeForm.value['calory']
     this.recipe.portion = this.recipeForm.value['portion']
     this.recipe.story = this.recipeForm.value['story']
+    this.recipe.img = this.recipeForm.value['img']
 
     this.recipe.time_need = this.recipe.time_pre + this.recipe.time_cooking
     this.recipeForm.value['ingrArray'].forEach((item: any, index: number) => {
@@ -178,8 +179,10 @@ export class EditRecipeComponent implements OnInit {
     this.recipeForm.value['stepsArray'].forEach((item: any, index: number) => {
       this.recipe.description[index] = item['lepes']
     })
-    const formData = new FormData()
-    formData.append('file', this.recipeForm.value['fileSource'])
+    // const formData = new FormData()
+    // const file = this.recipeForm.value['fileSource']
+    // formData.append('file', file, file.name)
+
     if (recipe._id === "") {
       this.recipeService.create(recipe)
       this.router.navigate(['dashboard/recipes'])
@@ -191,8 +194,7 @@ export class EditRecipeComponent implements OnInit {
       this.showInfo('módosítottál', 'Módosítva');
     }
 
-
-    this.recipeService.upload(formData);
+    // this.recipeService.upload(formData);
   }
 
 }

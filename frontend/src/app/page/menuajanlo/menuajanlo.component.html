@@ -1,1 +1,65 @@
-<p>menuajanlo works!</p>
+<ul class="menuajanlo">
+
+    <li class="menu-item d-flex" *ngFor="let menu of (menuList$ | async) let i = index">
+
+        <div class="menu-content">
+
+            <div class="menu-name">
+                <p> {{ menu.name }} </p>
+            </div>
+
+            <div class="menu-fogas" *ngFor="let item of (soup(i) |async)">
+                <p class="menu-recipe-name">
+                    Leves: {{menu.soup}}
+                </p>
+                <div class="menu-recipe-img">
+                    <img src="../../assets/img/recipes/{{item.img}}.jpg" routerLink="/recipes/{{item._id}}" alt="{{item.img}}">
+                </div>
+                <div class="menu-recipe-cal">
+                    {{item.calory}} kcal
+                </div>
+                <a routerLink="/recipes/{{item._id}}" class="card-button">Leves recept</a>
+            </div>
+
+            <div class="menu-fogas" *ngFor="let item of (main(i) |async)">
+                <p class="menu-recipe-name">
+                    Főétel: {{menu.main}}
+                </p>
+                <div class="menu-recipe-img">
+                    <img src="../../assets/img/recipes/{{item.img}}.jpg" routerLink="/recipes/{{item._id}}" alt="{{item.img}}">
+                </div>
+                <div class="menu-recipe-cal">
+                    {{item.calory}} kcal
+                </div>
+                <a routerLink="/recipes/{{item._id}}" class="card-button">Főétel recept</a>
+            </div>
+
+            <div class="menu-fogas" *ngFor="let item of (salad(i) |async)">
+                <p class="menu-recipe-name">
+                    Saláta: {{menu.salad}}
+                </p>
+                <div class="menu-recipe-img">
+                    <img src="../../assets/img/recipes/{{item.img}}.jpg" routerLink="/recipes/{{item._id}}" alt="{{item.img}}">
+                </div>
+                <div class="menu-recipe-cal">
+                    {{item.calory}} kcal
+                </div>
+                <a routerLink="/recipes/{{item._id}}" class="card-button">Saláta recept</a>
+            </div>
+
+            <div class="menu-fogas" *ngFor="let item of (dessert(i) |async)">
+                <p class="menu-recipe-name">
+                    Desszert: {{menu.dessert}}
+                </p>
+                <div class="menu-recipe-img">
+                    <img src="../../assets/img/recipes/{{item.img}}.jpg" routerLink="/recipes/{{item._id}}" alt="{{item.img}}">
+                </div>
+                <div class="menu-recipe-cal">
+                    {{item.calory}} kcal
+                </div>
+                <a routerLink="/recipes/{{item._id}}" class="card-button">Desszert recept</a>
+            </div>
+
+        </div>
+    </li>
+</ul>

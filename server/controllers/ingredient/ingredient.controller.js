@@ -9,11 +9,11 @@ exports.getIngredients = async (req, res) => {
 
 exports.postIngredient = (req, res, next) => {
     const { name, unit, calory } = req.body;
-    // if (!lastName || !firstName || !vaccine) {
-    //     return next(
-    //         new createError.BadRequest("Missing properties!")
-    //     );
-    // }
+    if (!name || !unit || !calory) {
+        return next(
+            new createError.BadRequest("Missing properties!")
+        );
+    }
 
     const newIngredient = new Ingredient({
         name: name,

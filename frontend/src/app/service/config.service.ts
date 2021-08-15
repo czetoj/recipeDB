@@ -40,7 +40,7 @@ export class ConfigService {
     { key: 'lastName', title: 'Vezetéknév' },
     { key: 'firstName', title: 'Keresztnév' },
     { key: 'nickName', title: 'Felhasználónév' },
-    { key: 'email', title: 'email' },
+    { key: 'email', title: 'Email' },
     { key: 'countOfRecipes', title: 'Beküldött receptek száma' },
     { key: 'start', title: 'Tagság kezdete' },
     { key: 'role', title: 'Jogosultság' },

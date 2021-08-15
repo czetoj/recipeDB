@@ -2,12 +2,26 @@ footer {
     background-color: black;
 }
 
-footer a,
-footer span,
+footer .footer-left,
+footer .footer-middle,
 footer .copyright {
     color: white;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+footer .footer-cj {
+    color: yellowgreen;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
 i {
     color: red;
+}
+
+footer .footer-cj:hover {
+    border-bottom: 1px solid yellowgreen;
 }

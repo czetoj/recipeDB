@@ -40,6 +40,15 @@ export class RecipeService {
     return of([])
   }
 
+  getIndex(): Observable<Recipe[]> {
+    const recipes: Recipe[] | undefined = this.list$.value.filter(item => item.index !== 0);
+    if (recipes) {
+      recipes.sort((a, b) => a.index - b.index)
+      return of(recipes)
+    }
+    return of([])
+  }
+
   update(recipe: Recipe): Observable<Recipe> {
     return this.http.patch<Recipe>(`${this.apiUrl}/${recipe._id}`, recipe)
   }
@@ -53,7 +62,7 @@ export class RecipeService {
   }
 
   upload(formData: FormData): void {
-    this.http.post('http://localhost:3000/upload', formData).subscribe(res => {
+    this.http.post('http://localhost:3000/recipes/upload', formData).subscribe(res => {
       console.log(res);
       alert('Sikeres file feltöltés')
     })

@@ -13,9 +13,9 @@
     <div class="sidebar-wrapper">
 
         <div class="row mobil-auth mx-auto pt-2">
-            <ul class="d-flex flex-row align-items-center mb-0">
+            <ul class="d-flex flex-column align-items-center mb-0">
                 <li *ngIf="user" class="nav-item">
-                    <span> Üdvözöljük {{user.firstName}}!</span>
+                    Üdvözöljük <span class="udv-name"> {{user.firstName}}!</span>
                 </li>
                 <li *ngIf="user" class="nav-item">
                     <a class="nav-link" routerLink='/profil'>

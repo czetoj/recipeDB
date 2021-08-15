@@ -30,7 +30,6 @@ export class RecipeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.recipe$.subscribe(data => {
       this.recipe = data
-      console.log(data);
     })
   }
 

@@ -13,7 +13,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToastrModule } from 'ngx-toastr';
 import { PagiPipe } from './pipe/pagi.pipe';
 import { SortPipe } from './pipe/sort.pipe';
-import { SummaryPipe } from './pipe/summary.pipe';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ChartsModule } from 'ng2-charts';
 import { ShowLatestFivePipe } from './pipe/show-latest-five.pipe';
@@ -57,7 +56,6 @@ import { MenuajanloComponent } from './page/menuajanlo/menuajanlo.component';
     DashboardComponent,
     PagiPipe,
     SortPipe,
-    SummaryPipe,
     PaginationComponent,
     ShowLatestFivePipe,
     NumberhuPipe,

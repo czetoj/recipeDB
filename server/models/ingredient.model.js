@@ -1,9 +1,18 @@
 const mongoose = require('mongoose');
 
 const ingredientSchema = mongoose.Schema({
-    name: String,
-    unit: String,
-    calory: Number,
+    name: {
+        type: String,
+        required: true
+    },
+    unit: {
+        type: String,
+        required: true
+    },
+    calory: {
+        type: Number,
+        required: true
+    },
 }, {
     timestamps: true
 });

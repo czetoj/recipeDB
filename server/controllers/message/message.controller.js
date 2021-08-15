@@ -9,11 +9,11 @@ exports.getMessages = async (req, res) => {
 
 exports.postMessage = (req, res, next) => {
     const { email, sender, subject, message, status } = req.body;
-    // if (!lastName || !firstName || !vaccine) {
-    //     return next(
-    //         new createError.BadRequest("Missing properties!")
-    //     );
-    // }
+    if (!email || !sender || !subject || !message) {
+        return next(
+            new createError.BadRequest("Missing properties!")
+        );
+    }
 
     const newMessage = new Message({
         email: email,
@@ -27,6 +27,9 @@ exports.postMessage = (req, res, next) => {
         .then(data => {
             res.status(201);
             res.json(data);
+        })
+        .catch((err) => {
+            return next(new createError.BadRequest(err));
         });
 }
 

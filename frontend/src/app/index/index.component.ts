@@ -20,7 +20,10 @@ export class IndexComponent implements OnInit {
       if (params.category) {
         return this.recipeService.getCategory(params.category)
       }
-      return this.categoryList$ = this.recipeService.list$
+      return this.recipeService.list$.pipe(switchMap(recipes =>
+        this.recipeService.getIndex()
+      )
+      )
     }
     )
   )
@@ -28,7 +31,9 @@ export class IndexComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private ar: ActivatedRoute
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.recipeService.getAll();

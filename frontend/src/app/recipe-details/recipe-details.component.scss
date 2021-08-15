@@ -37,12 +37,10 @@ ol li::before {
     height: var(--size);
     top: 0;
     //transform: rotate(-10deg);
-    // background: #9c27b0;
     background: yellowgreen;
     border-radius: 50%;
     text-align: center;
-    // box-shadow: 1px 1px 0 #999;
-    box-shadow: 1px 1px 0#c7370c;
+    box-shadow: 1px 1px 0 red;
 }
 
 hr.style15 {
@@ -70,7 +68,7 @@ hr.style16:after {
     position: relative;
     top: -55px;
     padding: 0.5rem;
-    background: #f0f0f0;
+    background-color: #f0f0f0;
     color: yellowgreen;
 }
 
@@ -81,11 +79,52 @@ hr.style16:after {
 }
 
 .design-img {
-    max-height: 100px;
+    min-height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.design-img img {
+    max-height: 170px;
     image-orientation: from-image;
-    max-height: 100%;
-    min-width: 100%;
     object-fit: cover;
-    vertical-align: bottom;
-    border-radius: 3px 3px 0 0;
+    vertical-align: middle;
+    min-width: 100%;
+}
+
+// .content {
+//     background-image: url(../../assets/img/bg-pattern.62c26c7b1bf403ce5ca8.png),
+//         linear-gradient(90deg, #c8c8c8, #c8c8c8);
+//     background-attachment: fixed;
+// }
+
+.hozzavalok-img {
+    display: block;
+    position: relative;
+}
+
+.hozzavalok-img::after {
+    content: "";
+    background: url(../../assets/img/cooking-mix-design.svg) no-repeat top right;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+h1.recipe-name {
+    font-family: "Alex Brush", cursive;
+    @import url("https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap");
+    letter-spacing: 2px;
+}
+
+@media (max-width: 640px) {
+    h1.recipe-name {
+        font-size: 2.5rem;
+    }
 }

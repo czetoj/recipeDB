@@ -3,7 +3,8 @@
     <li class="card-item d-flex" *ngFor="let recipe of (categoryList$ | async)">
         <div class="card-content">
             <div class="card-image">
-                <img src="../../assets/img/recipes/{{recipe.img}}.jpg" alt="{{recipe.img}}">
+                <img routerLink="/recipes/{{recipe._id}}" src="../../assets/img/recipes/{{recipe.img}}.jpg"
+                    alt="{{recipe.img}}">
 
                 <div class="card-name">
                     <span class="card-recipe-name">

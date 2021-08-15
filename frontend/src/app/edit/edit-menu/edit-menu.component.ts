@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Menu } from 'src/app/model/menu';
@@ -22,6 +23,19 @@ export class EditMenuComponent implements OnInit {
     switchMap(params => this.menuService.get(params.id))
   );
 
+  soup$: Observable<Recipe[]> = this.recipeService.list$.pipe(
+    switchMap(recipes => of(this.recipeService.list$.value.filter(item => item.category === 'Leves')))
+  )
+  main$: Observable<Recipe[]> = this.recipeService.list$.pipe(
+    switchMap(recipes => of(this.recipeService.list$.value.filter(item => item.category === 'Főzelék' || item.category === 'Halak' || item.category === 'Húsos fogás' || item.category === 'Tészta')))
+  )
+  salad$: Observable<Recipe[]> = this.recipeService.list$.pipe(
+    switchMap(recipes => of(this.recipeService.list$.value.filter(item => item.category === 'Saláta')))
+  )
+  dessert$: Observable<Recipe[]> = this.recipeService.list$.pipe(
+    switchMap(recipes => of(this.recipeService.list$.value.filter(item => item.category === 'Desszert')))
+  )
+
   menu: Menu = new Menu()
   soupArray: string[] = []
   new: boolean = false
@@ -33,6 +47,7 @@ export class EditMenuComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
+    private recipeService: RecipeService
   ) {
     this.menuForm = this.fb.group({
       name: ['', Validators.required],
@@ -90,8 +105,8 @@ export class EditMenuComponent implements OnInit {
     this.menu.dessert = this.menuForm.value['dessert']
     this.menu.week = this.menuForm.value['week']
 
-    const formData = new FormData()
-    formData.append('file', this.menuForm.value['fileSource'])
+    // const formData = new FormData()
+    // formData.append('file', this.menuForm.value['fileSource'])
 
     if (menu._id === "") {
       this.menuService.create(menu)
@@ -104,7 +119,7 @@ export class EditMenuComponent implements OnInit {
       this.showInfo('módosítottál', 'Módosítva');
     }
 
-    this.menuService.upload(formData);
+    // this.menuService.upload(formData);
   }
 
 
