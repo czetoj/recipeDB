@@ -29,18 +29,18 @@ Az alkalmazás célja, hogy a felhasználók valamint az adminisztrátor által 
 
 ## **Főbb részei:**
 
----
+Alapvetően két fő részből áll az alkalmazás:
+
+- A bárki által látogatható receptes felület.
+- A bejelentkezéshez kötött adminisztrációs felület.
 
 ## _**1. Főoldal**_
 
-
----
+A főoldalon felső és oldalsó navigáció is van footerrel és az SPA Angular komponensek középre töltődnek be.
 
 ## _**2. Navigáció**_
 
-
-
----
+Az oldalsó menüben az alsó menüpontok csak user vagy admin jogosultsággal érhetők el.
 
 ## _**3. Receptek adatbázis**_
 ---
@@ -275,7 +275,7 @@ Ezek az adatok a következők:
 
 ---
 
-## _**6. Heti menü adatbázis**_
+## _**6. Napi menü adatbázis**_
 ---
 
 ---
@@ -296,8 +296,11 @@ Az aloldal megjeleníti az összes menü adatait lista formátumban.
 Ezek az adatok a következők:
 - id (azonosító)
 - name (név)
-- 
--- kialakítás alatt --
+- soup (leves)
+- main (főétel)
+- salad (saláta)
+- dessert (desszert)
+- week (érvényesség hete)
 
 ---
 

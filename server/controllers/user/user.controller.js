@@ -33,7 +33,7 @@ exports.getUser = async (req, res, next) => {
     res.json(user)
 };
 
-exports.postUser = (req, res, next) => {
+exports.postUser = async (req, res, next) => {
     const { firstName, lastName, nickName, email, password, countOfRecipes, start, role } = req.body;
 
     if (!email || !password) {
@@ -42,7 +42,7 @@ exports.postUser = (req, res, next) => {
         );
     }
 
-    const newUser = new User({
+    const newUser = {
         firstName: firstName,
         lastName: lastName,
         nickName: nickName,
@@ -51,7 +51,7 @@ exports.postUser = (req, res, next) => {
         countOfRecipes: countOfRecipes,
         start: start,
         role: role
-    });
+    };
 
     userService.create(newUser)
         .then(data => {
@@ -63,7 +63,7 @@ exports.postUser = (req, res, next) => {
         });
 }
 
-exports.patchUser = (req, res, next) => {
+exports.patchUser = async (req, res, next) => {
 
     const userid = req.params.id
 

@@ -7,7 +7,7 @@ exports.getMessages = async (req, res) => {
     res.json(messages)
 };
 
-exports.postMessage = (req, res, next) => {
+exports.postMessage = async (req, res, next) => {
     const { email, sender, subject, message, status } = req.body;
     if (!email || !sender || !subject || !message) {
         return next(
@@ -15,13 +15,13 @@ exports.postMessage = (req, res, next) => {
         );
     }
 
-    const newMessage = new Message({
+    const newMessage = {
         email: email,
         sender: sender,
         subject: subject,
         message: message,
         status: status,
-    });
+    };
 
     messageService.create(newMessage)
         .then(data => {
@@ -33,7 +33,7 @@ exports.postMessage = (req, res, next) => {
         });
 }
 
-exports.patchMessage = (req, res, next) => {
+exports.patchMessage = async (req, res, next) => {
 
     const messageid = req.params.id
 

@@ -7,7 +7,7 @@ exports.getIngredients = async (req, res) => {
     res.json(ingredients)
 };
 
-exports.postIngredient = (req, res, next) => {
+exports.postIngredient = async (req, res, next) => {
     const { name, unit, calory } = req.body;
     if (!name || !unit || !calory) {
         return next(
@@ -15,11 +15,11 @@ exports.postIngredient = (req, res, next) => {
         );
     }
 
-    const newIngredient = new Ingredient({
+    const newIngredient = {
         name: name,
         unit: unit,
         calory: calory,
-    });
+    };
 
     ingredientService.create(newIngredient)
         .then(data => {
@@ -31,7 +31,7 @@ exports.postIngredient = (req, res, next) => {
         });
 }
 
-exports.patchIngredient = (req, res, next) => {
+exports.patchIngredient = async (req, res, next) => {
 
     const ingredientid = req.params.id
 
@@ -52,7 +52,7 @@ exports.deleteIngredient = async (req, res, next) => {
     try {
         await ingredientService.delete(ingredientid)
     } catch (err) {
-        return next(new createError.NotFound("Vaccine is not found"));
+        return next(new createError.NotFound("Ingredient is not found"));
     }
 
     res.json(true)

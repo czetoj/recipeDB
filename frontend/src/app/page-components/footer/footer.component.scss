@@ -11,6 +11,10 @@ footer .copyright {
     font-size: 1rem;
 }
 
+footer .footer-left ul li a i {
+    color: white;
+}
+
 footer .footer-cj {
     color: yellowgreen;
     text-align: center;
@@ -18,10 +22,10 @@ footer .footer-cj {
     font-size: 1rem;
 }
 
-i {
-    color: red;
-}
-
 footer .footer-cj:hover {
     border-bottom: 1px solid yellowgreen;
+}
+
+footer .copyright i {
+    color: red;
 }

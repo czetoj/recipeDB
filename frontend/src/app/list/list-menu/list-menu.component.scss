@@ -39,3 +39,23 @@ textarea {
     background-position-y: 10px;
     margin-right: 8px;
 }
+
+.menu-design {
+    display: block;
+    position: relative;
+    height: 100%;
+}
+
+.menu-design::after {
+    content: "";
+    background: url(../../../assets/img/svg/menu.svg) no-repeat top right;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    top: 7px;
+    left: 0;
+    bottom: 0;
+    right: 7px;
+    position: absolute;
+    z-index: -1;
+    background-size: 70px;
+}

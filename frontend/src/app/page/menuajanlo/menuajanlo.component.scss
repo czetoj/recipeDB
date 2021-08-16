@@ -1,3 +1,209 @@
 img {
     cursor: pointer;
 }
+
+/* Photos */
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+/*Flex items*/
+.menuajanlo {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 80rem;
+    margin: 1rem auto;
+}
+
+.menu-content {
+    background-color: #d6d3d1;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border-radius: 3px 3px 0 0;
+    width: 100%;
+}
+
+.menu-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(251, 246, 243, 0.8);
+    width: 100%;
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    line-height: 2;
+    border: 3px solid #fbf6f3;
+    box-shadow: 0 0 0 1px #fff inset;
+}
+
+.menu-fogas-day {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* mobil nézet  */
+.menu-fogas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // margin: 5px;
+    margin: 1em 0.25em;
+    box-shadow: 0 0 0 1px #fff inset;
+    border: 3px solid #fbf6f3;
+
+    // flex: 1;
+    width: 100%;
+}
+
+.menu-recipe-name {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    padding: 0.5rem;
+    background-color: #fff;
+    width: 100%;
+}
+
+.menu-meals {
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.menu-meals-name {
+    display: flex;
+    justify-content: center;
+    color: red;
+    padding: 0.5rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    text-align: center;
+}
+
+.menu-recipe-img {
+    display: flex;
+    position: relative;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-recipe-img img {
+    image-orientation: from-image;
+    max-height: 100%;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+
+.menu-recipe-cal {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(251, 246, 243, 0.8);
+    width: 100%;
+}
+
+.menu-button {
+    background-color: rgba(52, 58, 64, 0.5);
+    border: 0;
+    color: white;
+    padding: 0.7rem;
+    width: 100%;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-button:hover {
+    background-color: rgba(52, 58, 64, 0.8);
+}
+
+// .card-features {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-around;
+//     margin-bottom: 1rem;
+//     color: rgba(52, 58, 64, 0.8);
+//     flex: 1;
+//     align-items: flex-end;
+// }
+
+// @media all and (min-width: 640px) {
+//     .card-features {
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: flex-end;
+//     }
+// }
+
+// @media all and (min-width: 1200px) {
+//     .card-features {
+//         flex-direction: row;
+//         justify-content: space-around;
+//         flex: 1;
+//         align-items: flex-end;
+//     }
+// }
+
+// .card-country {
+//     font-size: 1rem;
+//     text-transform: uppercase;
+//     color: rgba(52, 58, 64, 0.8);
+//     display: block;
+// }
+
+// .card-details {
+//     background-color: #e6dbd4;
+//     padding: 1rem;
+//     width: 100%;
+//     // height: min-content;
+//     margin: 0 auto;
+
+//     display: flex;
+//     flex: 1 0 auto;
+//     flex-direction: column;
+//     justify-content: space-between;
+// }
+
+// .card-description {
+//     padding-top: 30px;
+//     text-align: center;
+//     color: rgba(52, 58, 64, 0.8);
+// }
+
+// /* card méretarány  668px 418px 62%*/
+
+/* tablet nézet */
+@media all and (min-width: 580px) {
+    .menu-fogas {
+        max-width: calc(50% - 1em);
+    }
+
+    .menu-recipe-img img {
+        height: 300px;
+    }
+}
+/* tablet nézet */
+
+/* desktop nézet */
+@media all and (min-width: 960px) {
+    .menu-fogas {
+        max-width: calc(25% - 1em);
+    }
+}
+/* desktop nézet */

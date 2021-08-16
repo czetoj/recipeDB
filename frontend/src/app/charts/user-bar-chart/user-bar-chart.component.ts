@@ -14,7 +14,14 @@ export class UserBarChartComponent implements OnInit {
 
   barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
   }
   // chartType: any = 'bar';
   barChartLegend = true;

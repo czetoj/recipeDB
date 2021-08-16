@@ -78,8 +78,8 @@ export class EditIngredientComponent implements OnInit {
     this.ingredient.unit = this.ingredientForm.value['unit']
     this.ingredient.calory = this.ingredientForm.value['calory']
 
-    const formData = new FormData()
-    formData.append('file', this.ingredientForm.value['fileSource'])
+    // const formData = new FormData()
+    // formData.append('file', this.ingredientForm.value['fileSource'])
     if (ingredient._id === "") {
       this.ingredientService.create(ingredient)
       this.router.navigate(['dashboard/ingredients'])
@@ -91,6 +91,6 @@ export class EditIngredientComponent implements OnInit {
       this.showInfo('módosítottál', 'Módosítva');
     }
 
-    this.ingredientService.upload(formData);
+    // this.ingredientService.upload(formData);
   }
 }

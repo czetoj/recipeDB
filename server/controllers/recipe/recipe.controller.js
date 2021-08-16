@@ -11,7 +11,7 @@ exports.getRecipes = async (req, res) => {
     }
 };
 
-exports.postRecipe = (req, res, next) => {
+exports.postRecipe = async (req, res, next) => {
     const { name, category, time_need, difficulty, price_friendly, time_pre, time_cooking, degree, index, calory, description, ingredients, ingredients_quantity, ingredients_unit, img, story, portion } = req.body;
     if (!name || !category || !difficulty || !price_friendly || !description || !ingredients || !portion) {
         return next(
@@ -19,7 +19,7 @@ exports.postRecipe = (req, res, next) => {
         );
     }
 
-    const newRecipe = new Recipe({
+    const newRecipe = {
         name: name,
         category: category,
         time_need: time_need,
@@ -37,7 +37,7 @@ exports.postRecipe = (req, res, next) => {
         img: img,
         story: story,
         portion: portion
-    });
+    };
 
     recipeService.create(newRecipe)
         .then(data => {
@@ -53,7 +53,7 @@ exports.upload = (req, res, next) => {
     console.log(req.files)
 }
 
-exports.patchRecipe = (req, res, next) => {
+exports.patchRecipe = async (req, res, next) => {
 
     const recipeid = req.params.id
 

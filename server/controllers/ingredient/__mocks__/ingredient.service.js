@@ -21,7 +21,7 @@ ingredientService.delete = jest.fn((_id) => Promise.resolve(
     //     return null;
     // }
     // mockData.splice(mockData.findIndex(i => i._id === _id), 1)
-    {}
+    true
 ))
 
 ingredientService.__setMockData = data => mockData = data;

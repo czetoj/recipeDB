@@ -7,7 +7,7 @@ exports.getMenus = async (req, res) => {
     res.json(menus)
 };
 
-exports.postMenu = (req, res, next) => {
+exports.postMenu = async (req, res, next) => {
     const { name, soup, main, salad, dessert, week } = req.body;
     if (!name || !soup || !main || !salad || !dessert || !week) {
         return next(
@@ -15,14 +15,14 @@ exports.postMenu = (req, res, next) => {
         );
     }
 
-    const newMenu = new Menu({
+    const newMenu = {
         name: name,
         soup: soup,
         main: main,
         salad: salad,
         dessert: dessert,
         week: week
-    });
+    };
 
     menuService.create(newMenu)
         .then(data => {
@@ -34,7 +34,7 @@ exports.postMenu = (req, res, next) => {
         });
 }
 
-exports.patchMenu = (req, res, next) => {
+exports.patchMenu = async (req, res, next) => {
 
     const menuid = req.params.id
 
@@ -55,7 +55,7 @@ exports.deleteMenu = async (req, res, next) => {
     try {
         await menuService.delete(menuid)
     } catch (err) {
-        return next(new createError.NotFound("Vaccine is not found"));
+        return next(new createError.NotFound("Menu is not found"));
     }
     res.json(true)
 }

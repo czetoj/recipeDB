@@ -6,6 +6,7 @@ const messageRoute = require('./controllers/message/message.route');
 const menuRoute = require('./controllers/menu/menu.route');
 const authHandler = require('./auth/authHandler');
 const authenticateJwt = require('./auth/authenticate')
+const adminOnly = require('./auth/adminOnly')
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const createError = require('http-errors');
@@ -25,7 +26,6 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.post('/login', authHandler.login)
@@ -33,9 +33,11 @@ app.post('/refresh', authHandler.refresh)
 app.post('/logout', authHandler.logout)
 app.use(recipeRoute);
 app.use(ingredientRoute);
-app.use(userRoute);
+app.use('/users', userRoute);
 app.use(messageRoute);
 app.use(menuRoute);
+
+app.use(express.static("public"));
 
 app.use((req, res, next) => {
     next(createError(404));
@@ -64,3 +66,5 @@ mongoose.Promise = Promise;
 app.listen(process.env.PORT, () => {
     console.log(`The server is running at ${process.env.PORT}...`);
 });
+
+module.exports = app;
